@@ -1,0 +1,347 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.navbar {
+    background-color: $colors-green;
+    z-index:10000;
+    display: flex;
+    flex-direction: column;
+    position:fixed;
+    top:0;
+    left:0;
+
+    @include pc-only {
+        width: $navbar-width;
+        height: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        overflow-y: hidden;
+    }
+
+    @include tab {
+        width: 100%;
+        height: $navbar-height;
+        
+        
+        &::after{
+            content: "";
+            width: 100%;
+            height : 100%;
+            background-color: #0c0c0d8c;
+            z-index: 10000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transform: translateX(0%);
+            transition: transform 0s, opacity .5s;
+        }
+        &.collapsed::after{
+            opacity: 0;
+            transform: translateX(100%);
+            transition: transform .6s, opacity .3s;
+        }
+    }
+
+    .navbar-wrapper {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background-color: $colors-green;
+
+        @include pc-only {
+            height: 100%;
+        }
+        @include tab {
+            height: max-content;
+        }
+
+        .navbar-header {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+
+            @include pc-only {
+                height: max-content;
+            }
+            @include tab {
+                height: $navbar-height;
+                align-items: center;
+            }
+
+            .nav-open-btn{
+                @include pc-only{
+                    display: none;
+                }
+                @include tab{
+                    display: block;
+                    color: #fff;
+                    font-size: 1.5rem;
+                    height: fit-content;
+                    width: max-content;
+                    position: absolute;
+                    left: 10px;
+                }
+            }
+
+            .logo {
+                @include pc-only {
+                    margin: 30px 0;
+                }
+                @include tab {
+                    margin: 0;
+                }
+                width: max-content;
+                height: max-content;
+                display: flex;
+            }
+        }
+
+
+        .navbar-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            
+            @include pc-only{
+                width: 100%;
+                height: 100%;
+
+                .nav-close-btn{
+                    display: none;
+                }
+            }
+            @include tab{
+                z-index: 10001;
+                width: 80%;
+                position: fixed;
+                top :0;
+                left: 0;
+                height: 100%;
+                box-shadow: 5px 0px 8px 0px $colors-dark-alpha;
+                background-color: $colors-light-dark;
+                justify-content: flex-start;
+                transition: .5s;
+                transform: translateX(0%);
+                
+                &.collapsed{
+                    transition: .5s;
+                    transform: translateX(-105%);
+                }
+                .nav-close-btn{
+                    display:block;
+                    position: absolute;
+                    right: 20px;
+                    top:15px;
+                    font-size: 2rem;
+                    color: $colors-white;
+                }
+            }
+            .navbar-content-header{
+                @include pc-only{ 
+                    display: none; 
+                    flex: none;
+                }
+                @include tab{
+                    display: flex;
+                    min-height: 315px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .avatar-wrapper{
+                    margin: 5px auto;
+                    width: max-content;
+                    height: max-content;
+                    img{
+                        border-radius: 50%;
+                        width: 150px;
+                        height: 150px;
+                    }
+                    
+                    svg{
+                        font-size: 2rem;
+                        background-color: $colors-green;
+                        color: $colors-white;
+                        padding: 60px;
+                        border-radius: 50%;
+                    }
+                }
+                .desc-wrapper{
+                    p{ color: $colors-white; text-align: center; }
+                    .login{
+                        font-size: 1.3rem;
+                    }
+                    .username{
+                        font-size: .9rem;
+                        color: $colors-light-gray;
+                    }
+                    .message{
+                        font-size: 1.1rem;
+                    }
+                }
+                .status-wrapper{
+                    margin-top: 20px;
+                    width: 100%;
+                    .status-item{
+                        padding: 0 10px;
+                        p{
+                            width: 100%;
+                            text-align: center;
+                            font-size: .8em;
+                            color: $colors-white;
+                        }
+                    }
+                }
+            }
+
+            .navbar-content {
+                width: 100%;
+                @include pc-only{
+                    flex: 9;
+                }
+                @include tab{
+                    flex: 1;
+                    height: 100%;
+                }
+
+                .menu-list {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    @include pc-only {
+                        margin: 10px 0;        
+                    }
+                    @include tab {
+                        flex: none;
+                    }
+
+                    .menu-item {
+                        position: relative;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+
+                        @include pc-only{
+                            padding: 10px 0;
+                        }
+                        @include tab{
+                            padding: 0;
+                        }
+                        
+                        .menu-item-link {
+                            
+                            display: flex;
+                            flex-direction: row;
+                            width:100%;
+
+                            @include pc-only {
+                                font-size: 1.7rem;
+                                justify-content: center;
+                                align-items: center;
+                                color: $colors-green-light;
+                            }
+                            @include tab {
+                                font-size: 1.1rem;
+                                min-height: 50px;
+                                padding: 0 10px;
+                                justify-content: flex-start;
+                                align-items: center;
+                                color: $colors-text-sub;
+                            }
+
+                            &.active{
+                                color: $colors-white;
+                                @include tab {
+                                    background-color: $colors-dark;
+                                }
+                                &::after {
+                                    width: 4px;
+                                    content: "";
+                                    height: 100%;
+                                    background-color: $colors-yellow;
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                }
+                            }
+
+                            .menu-item-label {
+                                @include pc-only {
+                                    display: none;
+                                }
+                                @include tab {
+                                    display: block;
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            .navbar-footer {
+                width: 100%;
+                
+                @include pc-only {
+                    flex: 3;
+                }
+
+                @include tab{
+                    border-top: 1px solid $colors-light-gray;
+                    justify-self: flex-end;
+                }
+
+                .info-list {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    @include pc-only {
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    @include tab {
+                        flex-direction: row;
+                        justify-content: space-evenly;
+                        align-items: center;
+                    }
+                    .info-item {
+                        width: max-content;
+
+                        @include pc-only {
+                            margin: 10px 0;
+                        }
+                        @include tab {
+                            margin: 10px;
+                        }
+
+                        .info-item-link {
+                            @include pc-only {
+                                font-size: 1.5rem;
+                            }
+                            @include tab {
+                                font-size: 1.3rem;
+                            }
+                            &.login {
+                                @include pc-only {
+                                    color : $colors-white;
+                                }
+                                @include tab {
+                                    color : $colors-green;
+                                }
+                            }
+                            &.logout{
+                                color:$colors-red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

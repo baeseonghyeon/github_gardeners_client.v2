@@ -1,0 +1,28 @@
+@import '../../scss/variables';
+
+.__card-container{
+    background-color: $colors-light-dark;
+    box-shadow: 2px 2px 3px 0px $colors-dark-alpha;
+    border-radius: 10px;
+    padding : 10px 20px;
+    
+    .__card-header{
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+        .__card-header-title{
+            font-size: 1.2rem;
+            color:$colors-white;
+        }
+        .__card-header-desc{
+            font-size: .9rem;
+            color:$colors-text-sub;
+        }
+    }
+    .__card-wrapper{
+        display: flex;
+    }
+    .__card-footer{
+        display: flex;
+    }
+}

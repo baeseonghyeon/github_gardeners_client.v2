@@ -1,0 +1,53 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.contents.info{
+    p{ margin : 0; padding:0; color: #fff; font-weight: 100; }
+    a{ margin : 0; padding:0; color: #fff; font-weight: 100; text-decoration: underline; }
+    padding: 15px;
+    
+    .title{
+        font-weight: 100;
+        color:#fff;
+        margin: 0;
+        margin-bottom: .5em;
+
+        b{ color:$colors-green;}
+        
+        @include pc-only{
+            font-size: 3em;    
+        }
+
+        @include tab{
+            font-size: 2em;
+        }
+    }
+    .content-wrapper{
+        margin-top: 2em;
+        .info-item{
+            display: flex;
+
+            .info-title{ margin-right : 1em; }
+            .info-link { &:hover{ font-weight: 800; } }
+            .license{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                svg{font-size: 1.3em; display: flex;}
+            }
+
+            @include pc-only{
+                flex-direction: row;
+                align-items: center;    
+            }
+
+            @include tab{
+                flex-direction: column;
+                align-items: flex-start;
+                margin : 15px 0;
+            }
+            
+            
+        }
+    }
+}

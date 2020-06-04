@@ -1,0 +1,67 @@
+@import'../../scss/variables';
+
+.__user_info_container{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    width:max-content;
+    height: max-content;
+
+    &.vertical{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .__user_info_desc{
+            margin-top: .5rem;
+            justify-content: center;
+            align-items: center;
+            a,p{
+                text-align: center;
+            }
+        }
+    }
+
+    .__user_info_avatar{
+        position: relative;
+        width:max-content;
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+        }
+        .__user_info_avatar_verified{
+            color: $colors-green;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            position: absolute;
+            bottom: 0rem;
+            right: 0;
+            font-size: 1.5rem;
+        }
+    }
+    .__user_info_desc{
+        margin: auto 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        a,p{ word-break: break-all; }
+        
+        .__user_info_login{
+            color: $colors-white;
+            font-size: 1.2rem;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        .__user_info_username{
+            color: $colors-text-sub;
+            font-size: .9rem;
+        }
+    }
+}

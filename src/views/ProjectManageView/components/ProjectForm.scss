@@ -1,0 +1,24 @@
+@import '../../../scss/variables';
+.__project-detail-form{
+    .__project-detail-form-wrapper{
+        
+    }
+    .__project-detail-form-footer{
+        margin-top: 20px;
+        width: max-content;
+        display: flex;
+        justify-content: space-between;
+        .__project-detail-form-button{
+            font-size: 1rem;
+            color: $colors-white;
+            padding: .5rem 1rem;
+            border-radius: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 3px $colors-dark-alpha;
+            &.submit{ background-color: $colors-green;}
+            &.cancel{ background-color: $colors-light-gray; }
+            &.delete{ margin-left:20px; background-color: $colors-red; }
+        }        
+    }
+}

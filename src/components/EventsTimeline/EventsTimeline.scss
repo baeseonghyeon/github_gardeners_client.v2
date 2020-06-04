@@ -1,0 +1,242 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.users-activity-logs-wrapper {
+    position: relative;
+    background-color: $colors-dark;
+    padding-bottom: 30px;
+    // height: 100%;
+    @include pc-only {
+        margin-right: 20px;
+    }
+    @include tab {
+        margin: 0;
+    }
+    &::before {
+        content: "";
+        width: 1px;
+        position: absolute;
+        height: 100%;
+        background-color: $colors-white;
+        // log-item::after와 같아야함
+        @include pc-only {
+            left: 100px;
+        }
+        @include tab {
+            left: 25px;
+        }
+    }
+
+    .users-activity-log-item {
+        position: relative;
+        display: flex;
+        width: 100%;
+
+        .users-activity-log-item-wrapper {
+            @include pc-only {
+                margin: 10px 0px 10px 120px;
+                padding: 10px 20px;
+            }
+            @include tab {
+                margin: 35px 20px 10px 45px;
+            }
+            width: 100%;
+            min-height: 100px;
+        }
+
+        &[data-date] {
+            &::before {
+                position: absolute;
+                content: attr(data-date);
+                font-size: 0.8rem;
+                color: $colors-white;
+                @include pc-only {
+                    margin-left: 20px;
+                    top: 1.3rem;
+                    left: 0;
+                }
+                @include tab {
+                    left: 45px;
+                    top: 0.5rem;
+                }
+            }
+            &::after {
+                position: absolute;
+                content: "";
+                width: 17px;
+                height: 17px;
+                background-color: $colors-green;
+                border-radius: 50%;
+                @include common-box-shadow;
+
+                @include pc-only {
+                    left: 100px;
+                    margin-left: -8.5px;
+                    top: 1.5rem;
+                }
+                @include tab {
+                    left: 25px;
+                    margin-left: -8.5px;
+                    top: 0.6rem;
+                }
+            }
+        }
+        &:not([data-date]) {
+            .users-activity-log-item-wrapper {
+                @include pc-only {
+                    margin: 10px 0px 10px 120px;
+                }
+                @include tab {
+                    margin: 10px 20px 10px 45px;
+                }
+            }
+        }
+
+        .activity-log-header {
+            display: flex;
+
+            @include pc-only {
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            @include tab {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .message {
+                color: $colors-white;
+                font-weight: 300;
+                @include pc-only {
+                    font-size: 1rem;
+                }
+                @include tab {
+                    font-size: 0.8rem;
+                }
+            }
+            .timestamp {
+                color: $colors-text-sub;
+
+                @include pc-only {
+                    font-size: 0.8rem;
+                    margin-left: 10px;
+                }
+                @include tab {
+                    font-size: 0.5rem;
+                    align-self: flex-end;
+                }
+            }
+        }
+
+        .activity-log-content {
+            margin-top: 10px;
+            display: flex;
+            background-color: $colors-light-dark;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-self: center;
+            @include pc-only {
+                // width: max-content;
+                border-radius: 5px;
+                @include common-box-shadow;
+            }
+            @include tab {
+                @include common-box-shadow;
+            }
+
+            .repo-info-header {
+                margin: 10px 20px;
+                .repo-info-header-title {
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                    word-break: break-all;
+                    color: $colors-white;
+                    font-weight: 400;
+                    font-size: 1rem;
+                }
+                .repo-info-header-desc {
+                    font-size: 0.8rem;
+                    color: $colors-text-sub;
+                    margin: 0;
+                }
+            }
+            .languages-container {
+                display: flex;
+                flex-direction: row;
+                margin: 0px 10px 10px 20px;
+
+                max-width: 100%;
+                flex-wrap: wrap;
+                .language-item {
+                    margin-top: 0.1rem;
+                    margin-right: 0.3rem;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-content: center;
+                    .language-dot {
+                        display: flex;
+                        width: 0.7rem;
+                        height: 0.7rem;
+                        background-color: $colors-yellow;
+                        border-radius: 50%;
+                        align-self: center;
+                    }
+                    .language-name {
+                        margin-left: 0.3rem;
+                        color: $colors-white;
+                        line-height: 0.8rem;
+                        font-size: 0.7rem;
+                    }
+                    .language-percentage {
+                        margin-left: 0.3rem;
+                        color: $colors-white;
+                        line-height: 0.8rem;
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+            .repo-additional-info {
+                display: flex;
+                flex-direction: row;
+                margin: 0px 10px 10px 20px;
+                max-width: 100%;
+                flex-wrap: wrap;
+                .repo-additional-info-item {
+                    margin-top: 0.1rem;
+                    margin-right: 0.3rem;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-content: center;
+                    color: $colors-white;
+                    font-size: 0.8rem;
+                    line-height: 0.8rem;
+                    .repo-additional-info-item-desc {
+                        margin-left: 0.3rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .users-activity-log-loader {
+        width: max-content;
+        height: max-content;
+        margin-left: auto;
+        margin-right: 20px;
+        @include pc-only {
+            margin-top: 0;
+        }
+        @include tab {
+            margin-top: 10px;
+        }
+        button {
+            padding: 15px 20px;
+            color: $colors-white;
+            background-color: $colors-dark-alpha;
+            border-radius: 5px;
+        }
+    }
+}
+

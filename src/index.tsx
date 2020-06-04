@@ -1,12 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+
+// COMPONENTS and STYLES
+import { Navbar } from './components';
+import './scss/common.scss';
+
+// VIEWS
+import MainView from './views/MainView';
+import InfoView from './views/InfoView';
+import NotFoundView from './views/NotFoundView';
+
+import ProjectManageView from './views/ProjectManageView';
+import UsersView from './views/UsersView';
+
+// UTIL
+import { isMobile, isTablet } from 'react-device-detect';
+
+// ROUTER
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// REDUX
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import Thunk from 'redux-thunk';
+import rootReducer from './modules';
+
+const store = createStore(rootReducer, applyMiddleware(Thunk));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router>
+        <>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={MainView}></Route>
+            <Route exact path="/users" component={UsersView}></Route>
+            <Route path="/projects" component={ProjectManageView}></Route>
+            {/* <Route path="/" component={MainView}></Route> */}
+            <Route path="/info" component={ InfoView }/>
+            <Route path="*" component={ NotFoundView }/>
+          </Switch>
+        </>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

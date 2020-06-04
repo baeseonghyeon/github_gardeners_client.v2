@@ -1,0 +1,59 @@
+//
+// 미디어 쿼리 MIXIN
+// --------------------------------------------------
+
+// Break Point (Desktop First 기준 내림차순 설정)
+$desktop-l-width	: 1440px;
+$tablet-l-width		: 1024px;
+$tablet-s-width		: 768px;
+$mob-l-width		: 640px;
+$mob-m-width		: 425px;
+$mob-s-width		: 375px;
+
+// only PC
+@mixin pc-only {
+	@media screen and (min-width: $tablet-l-width + 1) {
+		@content;
+	}
+}
+// PC large
+@mixin pc-large {
+	@media screen and (min-width: $desktop-l-width + 1) {
+		@content;
+	}
+}
+
+// --------------------------------------------------
+
+// 태블릿
+@mixin tab {
+	@media screen and (max-width: $tablet-l-width) {
+		@content;
+	}
+}
+// 모바일
+@mixin mob {
+	@media screen and (max-width: $tablet-s-width - 1) {
+		@content;
+	}
+}
+// 모바일 large
+@mixin mob-large {
+	@media screen and (max-width: $mob-l-width) {
+		@content;
+	}
+}
+// 모바일 mid
+@mixin mob-mid {
+	@media screen and (max-width: $mob-m-width) {
+		@content;
+	}
+}
+// 모바일 small
+@mixin mob-small {
+	@media screen and (max-width: $mob-s-width) {
+		@content;
+	}
+}
+
+@mixin common-box-shadow { box-shadow : 2px 2px 3px #0c0c0dbd; }
