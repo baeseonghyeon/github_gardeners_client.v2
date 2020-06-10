@@ -13,16 +13,18 @@ import {
     GET_LANGUAGES_POPULARITY,
     GET_LANGUAGES_POPULARITY_SUCCESS,
     GET_LANGUAGES_POPULARITY_ERROR,
-    GET_POPULAR_REPOSITORY,
-    GET_POPULAR_REPOSITORY_SUCCESS,
-    GET_POPULAR_REPOSITORY_ERROR,
-    GET_HOTTEST_REPOSITORY,
-    GET_HOTTEST_REPOSITORY_SUCCESS,
-    GET_HOTTEST_REPOSITORY_ERROR,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR,
     CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
+    GET_LANG_POPULARITY_BY_USER,
+    GET_LANG_POPULARITY_BY_USER_SUCCESS,
+    GET_LANG_POPULARITY_BY_USER_ERROR,
+    CLEAR_LANG_POPULARITY_BY_USER,
+    GET_ATTENDANCES_BY_USER,
+    GET_ATTENDANCES_BY_USER_SUCCESS,
+    GET_ATTENDANCES_BY_USER_ERROR,
+    CLEAR_ATTENDANCES_BY_USER
 } from "./actions";
 
 const intialState:AnalyticsState = {
@@ -41,16 +43,6 @@ const intialState:AnalyticsState = {
         error : null,
         data: null,
     },
-    popular_repo: {
-        loading: false,
-        error :null,
-        data: null,
-    },
-    hottest_repo: {
-        loading: false,
-        error : null,
-        data : null,
-    },
     all_attendances_by_dates: {
         loading : false,
         error : null,
@@ -59,6 +51,16 @@ const intialState:AnalyticsState = {
     latest_challenge_attendances_by_user:{
         loading: false,
         error: null,
+        data : null,
+    },
+    languages_by_user:{
+        loading: false,
+        error: null,
+        data : null,
+    },
+    attendances_by_user : {
+        loading: false,
+        error : null,
         data : null,
     }
 }
@@ -163,56 +165,6 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
             data: null,
         }
     }),
-    // 유명한 저장소 
-    [GET_POPULAR_REPOSITORY]:state=>({
-        ...state,
-        popular_repo:{
-            loading:true,
-            error:null,
-            data:null
-        }
-    }),
-    [GET_POPULAR_REPOSITORY_SUCCESS]:(state,action)=>({
-        ...state, 
-        popular_repo:{
-            loading: false,
-            error: null,
-            data: action.payload
-        }
-    }),
-    [GET_POPULAR_REPOSITORY_ERROR]:(state, action)=>({
-        ...state,
-        popular_repo:{
-            loading:false,
-            error: action.payload,
-            data: null
-        }
-    }),
-    // 인증 저장소 
-    [GET_HOTTEST_REPOSITORY]:state=>({
-        ...state,
-        hottest_repo:{
-            loading:true,
-            error:null,
-            data:null,
-        }
-    }),
-    [GET_HOTTEST_REPOSITORY_SUCCESS]:(state,action)=>({
-        ...state, 
-        hottest_repo:{
-            loading: false,
-            error: null,
-            data: action.payload
-        }
-    }),
-    [GET_HOTTEST_REPOSITORY_ERROR]:(state, action)=>({
-        ...state,
-        hottest_repo:{
-            loading:false,
-            error: action.payload,
-            data: null,
-        }
-    }),
     //
     [GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER]:state=>({
         ...state,
@@ -244,6 +196,66 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
             ...intialState.latest_challenge_attendances_by_user
         }
     }),
+    [GET_LANG_POPULARITY_BY_USER]:state=>({
+        ...state,
+        languages_by_user:{
+            loading:true,
+            error:null,
+            data:null,
+        }
+    }),
+    [GET_LANG_POPULARITY_BY_USER_SUCCESS]:(state,action)=>({
+        ...state,
+        languages_by_user:{
+            loading:false,
+            error : null,
+            data:action.payload
+        }
+    }),
+    [GET_LANG_POPULARITY_BY_USER_ERROR]:(state,action)=>({
+        ...state,
+        languages_by_user:{
+            loading:false,
+            error:action.payload,
+            data:null,
+        }
+    }),
+    [CLEAR_LANG_POPULARITY_BY_USER]:state=>({
+        ...state,
+        languages_by_user:{
+            ...intialState.languages_by_user
+        }
+    }),
+    [GET_ATTENDANCES_BY_USER]:state=>({
+        ...state,
+        attendances_by_user:{
+            loading:true,
+            error:null,
+            data:null,
+        }
+    }),
+    [GET_ATTENDANCES_BY_USER_SUCCESS]:(state,action)=>({
+        ...state,
+        attendances_by_user:{
+            loading:false,
+            error : null,
+            data:action.payload
+        }
+    }),
+    [GET_ATTENDANCES_BY_USER_ERROR]:(state,action)=>({
+        ...state,
+        attendances_by_user:{
+            loading:false,
+            error:action.payload,
+            data:null,
+        }
+    }),
+    [CLEAR_ATTENDANCES_BY_USER]:state=>({
+        ...state,
+        attendances_by_user:{
+            ...intialState.attendances_by_user
+        }
+    })
 });
 
 export default analytics;

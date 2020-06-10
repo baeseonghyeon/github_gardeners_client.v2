@@ -1,0 +1,21 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.__custom_btn__{
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    width: 120px;
+    background-color: $colors-material-blue;
+    border-radius: 5px;
+    justify-self: center;
+    align-items: center;
+    @include common-box-shadow;
+
+    .__custom_btn_text__{
+        font-size: 1rem;
+        line-height: .9rem;
+        margin: auto;
+        color: $colors-white;
+    }
+}

@@ -4,6 +4,7 @@ import { IEventsResponse } from '../../api/event';
 import { IEvent } from '../../api/interfaces/Event';
 import { isNullOrUndefined } from 'util';
 import moment from 'moment';
+import 'moment/locale/ko';
 
 import './EventsTimeline.scss';
 
@@ -70,7 +71,7 @@ const EventsTimeline = (props:IEventsTimelineProps)=>{
             })
         }
         {
-            !isNullOrUndefined(props.events.data) && !isNullOrUndefined(props.events.data.data) && (page < props.events.data.data.count_all_items) ?
+            stackedEvents.length % 10 === 0 ?
                 <div className="users-activity-log-loader" onClick={fn.loadMore}>
                     <button type="button">LOAD MORE</button>
                 </div> :

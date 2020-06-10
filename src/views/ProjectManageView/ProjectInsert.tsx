@@ -4,7 +4,7 @@ import React , { useState, useEffect } from 'react';
 import ProjectForm from './components/ProjectForm';
 import { isNullOrUndefined, isNull } from 'util';
 import moment from 'moment';
-
+import 'moment/locale/ko';
 import { postChallenge } from '../../api/challenge';
 import { useDispatch } from 'react-redux';
 import { getAllChallengesThunk } from '../../modules/challenges/thunks';

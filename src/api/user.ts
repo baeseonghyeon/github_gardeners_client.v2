@@ -51,6 +51,13 @@ export async function getUsersSearch(user_name:string){
     return reponse.data;
 }
 
+export async function getUserLatestFetchLog(user_name:string){
+    const response = await axios.get<IJSONResponse>(
+        `${REACT_API_HOST}/api/users/${user_name}/fetch`
+    );
+    return response.data;
+}
+
 export interface IUsersResponse extends IJSONResponse{
     data: [IUser]
 }

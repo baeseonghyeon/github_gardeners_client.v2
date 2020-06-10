@@ -1,0 +1,280 @@
+@import "../../../scss/mixins";
+@import "../../../scss/variables";
+
+.user-detail-container {
+    width: 100%;
+    display: flex;
+    .user-detail-wrapper {
+        display: flex;
+        height: 100%;
+        position: relative;
+        width: 100%;
+        @include pc-only {
+            flex-direction: row;
+        }
+        @include tab {
+            flex-direction: column;
+        }
+
+        // 사용자 정보
+        .user-profile-container {
+            $user-profile-container-width: 400px;
+            @include pc-only {
+                flex: 3;
+                min-width: $user-profile-container-width;
+                max-width: $user-profile-container-width;
+                
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+            @include tab {
+                // flex: 3;
+                flex-shrink: 0;
+                width: 100%;
+                // height: 100%;
+                // max-height: 200px;
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+
+            // ./UserProfile.tsx
+            .user-profile-wrapper {
+                width: 100%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                @include pc-only {
+                    min-height: 100%;
+                    max-height: 100%;
+                }
+                .user-profile-header {
+                    position: relative;
+                    display: flex;
+                    max-width: 100%;
+                    @include pc-only {
+                        margin: 30px 30px 20px 30px;
+                        flex-direction: column;
+                    }
+                    @include tab {
+                        margin: 20px;
+                        flex-direction: row;
+                    }
+
+                    .user-profile-avatar {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: relative;
+                        width: 100%;
+                        @include pc-only {
+                            flex: none;
+                        }
+                        @include tab {
+                            flex: 1;
+                        }
+                        .user-profile-avatar-img {
+                            display: flex;
+                            position: relative;
+                            @include pc-only {
+                                width: 100%;
+                            }
+                            @include tab {
+                                max-width: 100%;
+                            }
+                        }
+                        .user-profile-avatar-placeholder {
+                            background-color: $colors-light-dark;
+                            color: $colors-white;
+
+                            @include pc-only {
+                                width: $user-profile-container-width - 30px;
+                                height: $user-profile-container-width - 30px;
+                            }
+                            @include tab {
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .user-profile-desc {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        @include pc-only {
+                            width: 100%;
+                            margin-top: 15px;
+                        }
+                        @include tab {
+                            width: 100%;
+                            flex: 3;
+                            margin-left: 10px;
+                        }
+                        .user-profile-login {
+                            color: $colors-white;
+                            font-size: 1.5rem;
+                            word-wrap: break-all;
+                        }
+                        .user-profile-name {
+                            color: $colors-text-sub;
+                            word-wrap: break-all;
+                        }
+                    }
+                }
+
+                .user-profile-content {
+                    max-width: 100%;
+                    @include pc-only {
+                        margin: 0px 30px 30px 30px;
+                        border-top: 1px solid $colors-white;
+                        padding-top: 20px;
+                    }
+                    @include tab {
+                        margin: 20px;
+                        margin-top: 0;
+                    }
+                    .user-profile-content-item {
+                        margin-bottom: 1rem;
+                        a,
+                        p {
+                            color: $colors-white;
+                            font-size: 0.9rem;
+                        }
+                        &.info {
+                            display: flex;
+                            flex-direction: row;
+                            height: max-content;
+                            align-items: flex-end;
+                            margin-bottom: 0;
+                            svg {
+                                color: $colors-white;
+                            }
+                            a,
+                            p {
+                                font-size: 0.8rem;
+                                margin-left: 0.5rem;
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                }
+                .user-profile-footer {
+                    display: flex;
+                    flex-direction: row;
+                    align-self: flex-end;
+                    @include pc-only {
+                        margin: 30px;
+                        position: absolute;
+                        bottom: 0;
+                        right: 20px;
+                    }
+                    @include tab {
+                        margin: 0 20px;
+                        align-self: flex-end;
+                    }
+                    .profile-btn {
+                        height: 2rem;
+                        p {
+                            font-size: 0.9rem;
+                        }
+                        margin-left: 0.5rem;
+                        &.fetch {
+                            width: max-content;
+                            padding: 0 1rem;
+                        }
+                        &.cancel {
+                            width: 6rem;
+                            background-color: $colors-light-gray;
+                            p {
+                                color: $colors-white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 사용자 활동 내용
+        .user-activity-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            @include pc-only{
+                flex: 9;
+            }
+            .user-activity-header{
+                margin: 20px;
+                display: flex;
+                flex-direction: column;
+                height: max-content;
+            }
+            .user-activity-content{
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                position: relative;
+                display:flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.__custom_nav_container__ {
+    margin: 10px 0;
+    width: 100%;
+    height: max-content;
+    position: relative;
+    display: flex;
+    
+    .__custom_nav_wrapper__ {
+        display: flex;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $colors-white;
+        }    
+        .__customer_nav_item__ {
+            position: relative;
+            max-width: max-content;
+            .__custom_nav_item_btn__ {
+                background-color: rgba(0, 0, 0, 0);
+                box-shadow: none;
+                border-radius: 0;
+                @include tab{
+                    max-width: 105px;
+                    min-width: 90px;
+                }
+                p {
+                    color: $colors-text-sub;
+                }
+                &.active {
+                    p {
+                        color: $colors-green;
+                    }
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        z-index: 10;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: $colors-green;
+                    }
+                }
+            }
+        }
+    }
+}

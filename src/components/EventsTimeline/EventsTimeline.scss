@@ -126,7 +126,32 @@
                 }
             }
         }
-
+        .activity-commits{
+            margin-top: .3rem;
+            display: flex;
+            flex-direction: column;
+            .activity-commit-item{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+                a,p,svg{
+                    color:$colors-white;
+                    font-size: .8rem;
+                    font-weight: 300;
+                    word-break: break-all;
+                }
+                svg{ color:$colors-yellow; }
+                .commit-message{
+                    margin-left: .2rem;
+                }
+                .commit-author{
+                    margin-left: .2rem;
+                    font-size: .7rem;
+                    color: $colors-text-sub;
+                }
+            }
+        }
         .activity-log-content {
             margin-top: 10px;
             display: flex;

@@ -19,5 +19,10 @@ export type ChallengeState = {
         loading: boolean,
         error: Error | null,
         data: ILatestChallengeResponse | null,
+    },
+    active_challenges : {
+        loading: boolean,
+        error : Error | null,
+        data : IAllChallengesResponse | null,
     }
 };

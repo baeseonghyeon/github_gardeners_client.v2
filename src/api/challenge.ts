@@ -13,6 +13,13 @@ export async function getAllChallenges(){
     return res.data;
 }
 
+export async function getAllActiveChallenges(){
+    const res = await axios.get<IAllChallengesResponse>(
+        `${REACT_API_HOST}/api/challenges/active`
+    );
+    return res.data;
+}
+
 // 특정 사용자의 도전 결과를 가져옴 
 export async function getChallengesByUser(user_name:string){
     const res = await axios.get<IChallengesByUserResponse>(

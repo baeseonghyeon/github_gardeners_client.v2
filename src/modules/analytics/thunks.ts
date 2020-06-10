@@ -5,22 +5,22 @@ import {
     getSummary,
     getAllAttendances,
     getLanguagesPopularity,
-    getHottestRepository,
-    getPopularRepository,
     getAllAttendancesByDates,
-    getLatestChallengeAttendancesByUser
+    getLatestChallengeAttendancesByUser,
+    getLangPopularity,
+    getAttendancesByUser
 } from "../../api/analytics";
 import {
     getSummaryAsync,
     getAllAttendancesAsync,
     getLanguagesPopularityAsync,
-    getHottestRepositoryAsync,
-    getPopularRepositoryAsync,
     getAllAttendancesByDatesAsync,
     getLatestChallengeAttendancesByUserAsync,
+    getLangPopularityByUserAsync,
+    getAttendancesByUserAsync,
 } from "./actions";
 
-export function getSummaryThunk(): ThunkAction<
+export function getSummaryThunk(challenge_id : string): ThunkAction<
     void,
     RootState,
     null,
@@ -30,7 +30,7 @@ export function getSummaryThunk(): ThunkAction<
         const { request, success, failure } = getSummaryAsync;
         dispatch(request());
         try {
-            const summary = await getSummary();
+            const summary = await getSummary(challenge_id);
             dispatch(success(summary));
         } catch (e) {
             dispatch(failure(e));
@@ -74,7 +74,7 @@ export function getAllAttendancesByDatesThunk(): ThunkAction<
         }
     }
 }
-export function getLanguagesPopularityThunk(): ThunkAction<
+export function getLanguagesPopularityThunk(challenge_id:string): ThunkAction<
     void,
     RootState,
     null,
@@ -84,43 +84,7 @@ export function getLanguagesPopularityThunk(): ThunkAction<
         const { request, success, failure } = getLanguagesPopularityAsync;
         dispatch(request);
         try {
-            const response = await getLanguagesPopularity();
-            dispatch(success(response));
-        } catch (e) {
-            dispatch(failure(e));
-        }
-    };
-}
-
-export function getPopularRepositoryThunk(): ThunkAction<
-    void,
-    RootState,
-    null,
-    AnalyticsAction
-> {
-    return async (dispatch) => {
-        const { request, success, failure } = getPopularRepositoryAsync;
-        dispatch(request());
-        try {
-            const response = await getPopularRepository();
-            dispatch(success(response));
-        } catch (e) {
-            dispatch(failure(e));
-        }
-    };
-}
-
-export function getHottestRepositoryThunk(): ThunkAction<
-    void,
-    RootState,
-    null,
-    AnalyticsAction
-> {
-    return async (dispatch) => {
-        const { request, success, failure } = getHottestRepositoryAsync;
-        dispatch(request());
-        try {
-            const response = await getHottestRepository();
+            const response = await getLangPopularity({ challenge_id : challenge_id });
             dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
@@ -149,3 +113,50 @@ export function clearLatestChallengeAttendancesByUserThunk():ThunkAction<void, R
         dispatch(cancel());
     }
 }
+
+export function getLangPopularityByUserThunk(challenge_id:string, user_name:string): ThunkAction<
+void, RootState, null, AnalyticsAction>{
+    return async dispatch=>{
+        const { request, success, failure } = getLangPopularityByUserAsync;
+        dispatch(request());
+        try{
+            const res = await getLangPopularity({ login: user_name, challenge_id: challenge_id });
+            dispatch(success(res));
+        }
+        catch(e){
+            dispatch(failure(e));
+        }
+    }
+}
+
+export function clearLangPopularityByUserThunk(): ThunkAction<
+void, RootState, null, AnalyticsAction>{
+    return dispatch=>{
+        const { cancel } = getLangPopularityByUserAsync;
+        dispatch(cancel());
+    }
+}
+
+export function getAttendancesByUserThunk(challenge_id:string, user_name:string): ThunkAction<
+void, RootState, null, AnalyticsAction>{
+    return async dispatch=>{
+        const { request, success, failure } = getAttendancesByUserAsync;
+        dispatch(request());
+        try{
+            const res = await getAttendancesByUser(challenge_id, user_name);
+            dispatch(success(res));
+        }
+        catch(e){
+            dispatch(failure(e));
+        }
+    }
+}
+
+export function clearAttendancesByUserThunk(): ThunkAction<
+void, RootState, null, AnalyticsAction>{
+    return dispatch=>{
+        const { cancel } = getAttendancesByUserAsync;
+        dispatch(cancel());
+    }
+}
+

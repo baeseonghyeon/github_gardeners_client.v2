@@ -1,8 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { ChallengeAction } from './types';
-import { getAllChallenges, getChallengesByUser, getLatestChallenge } from '../../api/challenge';
-import { getAllChallengesAsync, getChallengesByUserAsync, getLatestChallengeAsync } from './actions';
+import { getAllChallenges, getChallengesByUser, getLatestChallenge, getAllActiveChallenges } from '../../api/challenge';
+import { getAllChallengesAsync, getChallengesByUserAsync, getLatestChallengeAsync, getActiveChallengesAsync } from './actions';
 
 export function getAllChallengesThunk():ThunkAction<void, RootState, null, ChallengeAction>{
     return async dispatch=>{
@@ -57,5 +57,28 @@ export function getLatestChallengeThunk():ThunkAction<void, RootState, null, Cha
         catch(e){
             dispatch(failure(e));
         }
+    }
+}
+
+
+
+export function getActiveChallengesThunk():ThunkAction<void, RootState, null, ChallengeAction>{
+    return async dispatch=>{
+        const {request, success, failure} = getActiveChallengesAsync;
+        dispatch(request());
+        try{
+            const response = await getAllActiveChallenges();
+            dispatch(success(response));
+        }
+        catch(e){
+            dispatch(failure(e));
+        }
+    }
+}
+
+export function clearActiveChallengesThunk():ThunkAction<void, RootState, null, ChallengeAction>{
+    return async dispatch=>{
+        const { cancel } = getActiveChallengesAsync;
+        dispatch(cancel());
     }
 }

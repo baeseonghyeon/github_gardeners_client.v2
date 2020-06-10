@@ -1,0 +1,116 @@
+@import "../../../scss/mixins";
+@import "../../../scss/variables";
+
+.user-project-detail-item {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    .summary-wrapper {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-top:10px;
+        padding-bottom: 15px;
+        .summary-item {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: $colors-light-dark;
+            padding: 13px 15px;
+            border-radius: 10px;
+            margin-right:10px;
+            @include common-box-shadow;
+            svg {
+                margin-right: 15px;
+                display: flex;
+                font-size: 2rem;
+                color: $colors-red;
+            }
+            .summary-content {
+                display: flex;
+                flex-direction: column;
+                .summary-header {
+                    color: $colors-white;
+                    font-size: 1.5rem;
+                    line-height: 1.5rem;
+                }
+                .summary-desc {
+                    font-size: 0.8rem;
+                    color: $colors-text-sub;
+                }
+            }
+            &.attendance.attended {
+                svg {
+                    color: $colors-green;
+                }
+            }
+            &.rank {
+                svg {
+                    color: $colors-blue;
+                }
+                &.first svg{ color:$colors-yellow; }
+                &.second svg{ color:$colors-text-sub; }
+                &.third svg{ color:$colors-orange; }
+            }
+            
+            &.state-prev{
+                svg{ color:$colors-blue; }
+            }
+            &.state-process{
+                svg{ color:$colors-yellow; }
+            }
+            &.state-finished{
+                svg{ color:$colors-green; }
+            }
+        }   
+    }
+    .attendance-chart-container{
+        margin : 15px 0;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        overflow-x: auto;
+        height: 400px;
+        >div{
+            overflow-x: auto !important;
+        }
+        &.empty{
+            height: initial;
+            flex-grow: 0;
+            flex-shrink: 0;
+            justify-content: center;
+            align-content: center;
+            .empty-desc{
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                text-align: center;
+            }
+        }
+    }
+    .user-language-usage-container{
+        margin : 15px 0;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        overflow-x: auto;
+        height: 400px;
+        >div{
+            overflow-x: auto !important;
+        }
+        &.empty{
+            height: initial;
+            flex-grow: 0;
+            flex-shrink: 0;
+            justify-content: center;
+            align-content: center;
+            .empty-desc{
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                text-align: center;
+            }
+        }
+    }
+}

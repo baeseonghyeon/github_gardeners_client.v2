@@ -14,9 +14,7 @@ import NotFoundView from './views/NotFoundView';
 
 import ProjectManageView from './views/ProjectManageView';
 import UsersView from './views/UsersView';
-
-// UTIL
-import { isMobile, isTablet } from 'react-device-detect';
+import UserDetailView from './views/UserDetailView';
 
 // ROUTER
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -38,8 +36,8 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/" component={MainView}></Route>
             <Route exact path="/users" component={UsersView}></Route>
+            <Route path="/users/:user_name" component={UserDetailView}></Route>
             <Route path="/projects" component={ProjectManageView}></Route>
-            {/* <Route path="/" component={MainView}></Route> */}
             <Route path="/info" component={ InfoView }/>
             <Route path="*" component={ NotFoundView }/>
           </Switch>

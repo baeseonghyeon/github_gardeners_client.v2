@@ -13,6 +13,10 @@ import {
     GET_LATEST_CHALLENGE_SUCCESS,
     GET_LATEST_CHALLENGE_ERROR,
     CLEAR_LATEST_CHALLENGE,
+    GET_ACTIVE_CHALLENGES,
+    GET_ACTIVE_CHALLENGES_SUCCESS,
+    GET_ACTIVE_CHALLENGES_ERROR,
+    CLEAR_ACTIVE_CHALLENGES
 } from "./actions";
 
 const initialState: ChallengeState = {
@@ -27,6 +31,11 @@ const initialState: ChallengeState = {
         data: null,
     },
     latest_challenge:{
+        loading: false,
+        error:null,
+        data:null,
+    },
+    active_challenges : {
         loading: false,
         error:null,
         data:null,
@@ -122,6 +131,36 @@ const challenge = createReducer<ChallengeState, ChallengeAction>(initialState, {
         ...state,
         latest_challenge:{
             ...initialState.latest_challenge
+        }
+    }),
+    [GET_ACTIVE_CHALLENGES] : (state)=>({
+        ...state,
+        active_challenges : {
+            loading : true,
+            data : null,
+            error : null,
+        }
+    }),
+    [GET_ACTIVE_CHALLENGES_SUCCESS] : (state, action)=>({
+        ...state,
+        active_challenges : {
+            loading : false,
+            data : action.payload,
+            error : null
+        }
+    }),
+    [GET_ACTIVE_CHALLENGES_ERROR] : (state, action)=>({
+        ...state,
+        active_challenges : {
+            loading : false,
+            data : null,
+            error : action.payload
+        }
+    }),
+    [CLEAR_ACTIVE_CHALLENGES] : (state)=>({
+        ...state,
+        active_challenges : {
+            ...initialState.active_challenges
         }
     })
 });

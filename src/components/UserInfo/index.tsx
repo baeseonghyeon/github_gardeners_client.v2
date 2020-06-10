@@ -12,13 +12,17 @@ interface UserInfoProps {
     title_size?: string,
     desc_size?: string,
     isVertical?: boolean,
-    Badge? : ReactNode
+    Badge? : ReactNode,
+    onClick?: (event:React.MouseEvent)=>void,
 }
 
 const UserInfo = (props: UserInfoProps) => {
     const _avatar_url = isNullOrUndefined(props.avatar_url) ? Github.getAvatarUrl(props.id) : props.avatar_url
 
-    return <div className={`__user_info_container ${props.className} ${!isNullOrUndefined(props.isVertical) && props.isVertical ? "vertical" : ""}`}>
+    return <div 
+        className={`__user_info_container ${props.className} ${!isNullOrUndefined(props.isVertical) && props.isVertical ? "vertical" : ""}`}
+        onClick={ props.onClick }
+    >
         <div className="__user_info_avatar">
             <img
                 src={_avatar_url}

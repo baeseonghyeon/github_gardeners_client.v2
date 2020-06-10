@@ -2,6 +2,7 @@ import React, { CSSProperties, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+import 'moment/locale/ko';
 import './AnimatedDateInput.scss';
 import { isNullOrUndefined } from 'util';
 

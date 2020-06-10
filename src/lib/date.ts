@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment/locale/ko';
 
 export function getPeriodString (start_dt:string,finish_dt:string,format?:string) : string{
     const _mStartDt = moment(start_dt);

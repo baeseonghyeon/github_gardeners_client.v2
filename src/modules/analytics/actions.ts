@@ -3,10 +3,9 @@ import {
     ISummaryResponse,
     IAllAttendancesResponse,
     ILanguagesResponse,
-    IPopularRepositoryResponse,
     IAllAttendancesByDatesResponse,
     ILatestChallengeAttendancesByUserResponse,
-    IHottestRepositoryResponse,
+    IAttendancesInChallengeByUserResponse
 } from "../../api/analytics";
 import { AxiosError } from "axios";
 
@@ -32,18 +31,6 @@ export const GET_LANGUAGES_POPULARITY_SUCCESS =
 export const GET_LANGUAGES_POPULARITY_ERROR =
     "analytics/GET_LANGUAGES_POPULARITY_ERROR";
 
-export const GET_POPULAR_REPOSITORY = "analytics/GET_POPULAR_REPOSITORY";
-export const GET_POPULAR_REPOSITORY_SUCCESS =
-    "analytics/GET_POPULAR_REPOSITORY_SUCCESS";
-export const GET_POPULAR_REPOSITORY_ERROR =
-    "analytics/GET_POPULAR_REPOSITORY_ERROR";
-
-export const GET_HOTTEST_REPOSITORY = "analytics/GET_HOTTESTD_REPOSITORY";
-export const GET_HOTTEST_REPOSITORY_SUCCESS =
-    "analytics/GET_HOTTEST_REPOSITORY_SUCCESS";
-export const GET_HOTTEST_REPOSITORY_ERROR =
-    "analytics/GET_HOTTEST_REPOSITORY_ERROR";
-
 export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER =
     "analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER";
 export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS =
@@ -52,6 +39,17 @@ export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR =
     "analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR";
 export const CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER =
     "analytics/CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER";
+
+
+export const GET_LANG_POPULARITY_BY_USER = "analytics/GET_LANG_POPULARITY_BY_USER";
+export const GET_LANG_POPULARITY_BY_USER_SUCCESS = "analytics/GET_LANG_POPULARITY_BY_USER_SUCCESS";
+export const GET_LANG_POPULARITY_BY_USER_ERROR = "analytics/GET_LANG_POPULARITY_BY_USER_ERROR";
+export const CLEAR_LANG_POPULARITY_BY_USER = "analytics/CLEAR_LANG_POPULARITY_BY_USER";
+
+export const GET_ATTENDANCES_BY_USER = "analytics/GET_ATTENDANCES_BY_USER";
+export const GET_ATTENDANCES_BY_USER_SUCCESS = "analytics/GET_ATTENDANCES_BY_USER_SUCCESS";
+export const GET_ATTENDANCES_BY_USER_ERROR= "analytics/GET_ATTENDANCES_BY_USER_ERROR";
+export const CLEAR_ATTENDANCES_BY_USER = 'analytics/CLEAR_ATTENDANCES_BY_USER';
 
 export const getSummaryAsync = createAsyncAction(
     GET_SUMMARY,
@@ -77,21 +75,23 @@ export const getLanguagesPopularityAsync = createAsyncAction(
     GET_LANGUAGES_POPULARITY_ERROR
 )<undefined, ILanguagesResponse, AxiosError>();
 
-export const getPopularRepositoryAsync = createAsyncAction(
-    GET_POPULAR_REPOSITORY,
-    GET_POPULAR_REPOSITORY_SUCCESS,
-    GET_POPULAR_REPOSITORY_ERROR
-)<undefined, IPopularRepositoryResponse, AxiosError>();
-
-export const getHottestRepositoryAsync = createAsyncAction(
-    GET_HOTTEST_REPOSITORY,
-    GET_HOTTEST_REPOSITORY_SUCCESS,
-    GET_HOTTEST_REPOSITORY_ERROR
-)<undefined, IHottestRepositoryResponse, AxiosError>();
-
 export const getLatestChallengeAttendancesByUserAsync = createAsyncAction(
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR,
     CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER
 )<undefined, ILatestChallengeAttendancesByUserResponse, AxiosError, undefined>();
+
+export const getLangPopularityByUserAsync = createAsyncAction(
+    GET_LANG_POPULARITY_BY_USER,
+    GET_LANG_POPULARITY_BY_USER_SUCCESS,
+    GET_LANG_POPULARITY_BY_USER_ERROR,
+    CLEAR_LANG_POPULARITY_BY_USER,
+)<undefined, ILanguagesResponse, AxiosError, undefined>();
+
+export const getAttendancesByUserAsync = createAsyncAction(
+    GET_ATTENDANCES_BY_USER,
+    GET_ATTENDANCES_BY_USER_SUCCESS,
+    GET_ATTENDANCES_BY_USER_ERROR,
+    CLEAR_ATTENDANCES_BY_USER,
+)<undefined, IAttendancesInChallengeByUserResponse, AxiosError, undefined>();

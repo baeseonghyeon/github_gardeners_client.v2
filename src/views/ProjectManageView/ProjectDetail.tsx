@@ -4,6 +4,7 @@ import ChallengeInterface from '../../api/interfaces/Challenge';
 import ProjectForm from './components/ProjectForm';
 import { isNullOrUndefined } from 'util';
 import moment from 'moment';
+import 'moment/locale/ko';
 
 import { putChallenge, deleteChallenge } from '../../api/challenge';
 import { useDispatch } from 'react-redux';

@@ -2,12 +2,13 @@ import axios from "axios";
 import { IJSONResponse } from "./interfaces/JSONReponse";
 import { IUser } from "./interfaces/User";
 import { IExtRepositoryWithoutUser } from "./interfaces/Repository";
+import ICommit from "./interfaces/Commit";
 
 const REACT_API_HOST = process.env.REACT_APP_API_HOST;
 
-export async function getSummary() {
+export async function getSummary(challenge_id : string) {
     const res = await axios.get<ISummaryResponse>(
-        `${REACT_API_HOST}/api/analysis/summary`
+        `${REACT_API_HOST}/api/analysis/summary/${challenge_id}`
     );
     return res.data;
 }
@@ -35,6 +36,13 @@ export async function getLatestChallengeAttendancesByUser(
     return res.data;
 }
 
+export async function getAttendancesByUser(challenge_id: string, login: string){
+    const res = await axios.get<IAttendancesInChallengeByUserResponse>(
+        `${REACT_API_HOST}/api/analysis/attendances/${challenge_id}/users/${login}`
+    );
+    return res.data;
+}
+
 export async function getLanguagesPopularity() {
     const res = await axios.get<ILanguagesResponse>(
         `${REACT_API_HOST}/api/analysis/languages`
@@ -42,34 +50,53 @@ export async function getLanguagesPopularity() {
     return res.data;
 }
 
-export async function getPopularRepository() {
-    const res = await axios.get<IPopularRepositoryResponse>(
-        `${REACT_API_HOST}/api/analysis/repo/popular`
+export interface IGetLangPopularityOptions {
+    login? : string,
+    challenge_id? : string,
+};
+
+export async function getLangPopularity(options : IGetLangPopularityOptions){
+    let uri = "";
+    if(options.challenge_id && options.login){ 
+        uri = `${REACT_API_HOST}/api/analysis/languages/challenges/${options.challenge_id}/users/${options.login}`
+    }
+    else if(options.challenge_id && !options.login){
+        uri = `${REACT_API_HOST}/api/analysis/languages/users/${options.login}`
+    }
+    else if(!options.challenge_id && options.login){
+        uri = `${REACT_API_HOST}/api/analysis/languages/challenges/${options.challenge_id}`
+    }
+    const res = await axios.get<ILanguagesResponse>(
+        uri
     );
     return res.data;
 }
 
-export async function getHottestRepository(){
-    const res = await axios.get<IHottestRepositoryResponse>(
-        `${REACT_API_HOST}/api/analysis/repo/hottest`
+export async function getUserRank (challenge_id:string,user_name:string){
+    const res = await axios.get<IUserRankResponse>(
+        `${REACT_API_HOST}/api/analysis/attendances/${challenge_id}/users/${user_name}/rank`
+    );
+    return res.data;
+}
+
+export async function getUserAttendanceToday (challenge_id:string,user_name:string){
+    const res = await axios.get<ITodayAttendanceByUserResponse>(
+        `${REACT_API_HOST}/api/analysis/attendances/${challenge_id}/users/${user_name}/today`
     );
     return res.data;
 }
 
 interface SummaryInterface {
     // 현재 저장된 저장소 수
-    repo_cnt: Number;
+    repo_cnt: number;
     // 사용자 수
-    user_cnt: Number;
+    user_cnt: number;
     // 모든 커밋의 갯수
-    commit_cnt: Number;
-    // 현재까지 진행된 일자
-    challenge_duration: number;
-    // 현재 도전의 남은 도전일자
-    current_challenge: {
-        title: string;
-        left_days: number;
-    };
+    commit_cnt: number;
+    // 종료까지 남은 일자
+    days_from_now_to_finish: number;
+    // 시작부터 지금까지 진행된 일자
+    days_from_start_to_now : number;
 }
 
 interface IAllAttendances {
@@ -89,6 +116,13 @@ interface ILanguagePopularity {
     rate_percentage: Number;
 }
 
+export interface IUserRankResponse extends IJSONResponse{
+    data : {
+        rank :number,
+        total:number,
+    }
+}
+
 export interface ISummaryResponse extends IJSONResponse {
     data: SummaryInterface;
 }
@@ -97,8 +131,17 @@ export interface IAllAttendancesResponse extends IJSONResponse {
     data: [IAllAttendances];
 }
 
+
 export interface ILatestChallengeAttendancesByUserResponse extends IJSONResponse{
     data : [IAllAttendances];
+}
+
+export interface IAttendancesInChallengeByUserResponse extends IJSONResponse{
+    data : [IAllAttendances];
+}
+
+export interface ITodayAttendanceByUserResponse extends IJSONResponse{
+    data : [ICommit];
 }
 
 export interface IAllAttendancesByDatesResponse extends IJSONResponse {

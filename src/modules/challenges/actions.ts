@@ -19,6 +19,11 @@ export const GET_LATEST_CHALLENGE_SUCCESS = "challenge/GET_LATEST_CHALLEGE_SUCCE
 export const GET_LATEST_CHALLENGE_ERROR = "challenge/GET_LATEST_CHALLENGE_ERROR";
 export const CLEAR_LATEST_CHALLENGE = "challenge/CLEAR_LATEST_CHALLENGE";
 
+export const GET_ACTIVE_CHALLENGES = 'challenge/GET_ACTIVE_CHALLENGE';
+export const GET_ACTIVE_CHALLENGES_SUCCESS = 'challenge/GET_ACTIVE_CHALLENGE_SUCCESS';
+export const GET_ACTIVE_CHALLENGES_ERROR = 'challenge/GET_ACTIVE_CHALLENGE_ERROR';
+export const CLEAR_ACTIVE_CHALLENGES = 'challenge/CLEAR_ACTIVE_CHALLENGE';
+
 export const getAllChallengesAsync = createAsyncAction(
     GET_ALL_CHALLENGES,
     GET_ALL_CHALLENGES_SUCCESS,
@@ -39,3 +44,10 @@ export const getLatestChallengeAsync = createAsyncAction(
     GET_LATEST_CHALLENGE_ERROR,
     CLEAR_LATEST_CHALLENGE
 )<undefined, ILatestChallengeResponse, AxiosError, undefined>();
+
+export const getActiveChallengesAsync = createAsyncAction(
+    GET_ACTIVE_CHALLENGES,
+    GET_ACTIVE_CHALLENGES_SUCCESS,
+    GET_ACTIVE_CHALLENGES_ERROR,
+    CLEAR_ACTIVE_CHALLENGES
+)<undefined, IAllChallengesResponse, AxiosError, undefined>();

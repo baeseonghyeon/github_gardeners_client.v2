@@ -5,15 +5,21 @@ import { IUsersResponse } from '../../api/user';
 import { isMobile, isTablet } from 'react-device-detect';
 
 import { TextHeader, UserInfo } from '../../components';
+import { useHistory } from 'react-router';
 
 interface UserListItemProps{
     user: IUser,
 }
 const UserListItem = (props:UserListItemProps)=>{
+    const history = useHistory();
     const _userInfoVertical = isMobile || isTablet;
     return <div className="users-list-item">
         <UserInfo isVertical={_userInfoVertical} id={props.user.id} avatar_url={props.user.avatar_url} user_name={props.user.name} login={props.user.login} />
-        <button className="btn">보기</button>
+        <button type="button" className="btn" onClick={ ()=>{
+            history.push(
+                `/users/${ props.user.login }`
+            )
+        } } >보기</button>
     </div>;
 }
 

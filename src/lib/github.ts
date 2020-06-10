@@ -12,5 +12,5 @@ export const lanColor = <CSSProperties>(name:string)=>{
     if (current_rgb) {
         return { backgroundColor: current_rgb };
     }
-    else { return {} }
+    else { return { backgroundColor:"#fff" } }
 }

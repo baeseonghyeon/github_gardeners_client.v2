@@ -4,10 +4,9 @@ import {
     ISummaryResponse,
     IAllAttendancesResponse,
     ILanguagesResponse,
-    IPopularRepositoryResponse,
-    IHottestRepositoryResponse,
     IAllAttendancesByDatesResponse,
     ILatestChallengeAttendancesByUserResponse,
+    IAttendancesInChallengeByUserResponse,
 } from "../../api/analytics";
 
 export type AnalyticsAction = ActionType<typeof actions>;
@@ -33,19 +32,19 @@ export type AnalyticsState = {
         error: Error | null;
         data: ILanguagesResponse | null;
     };
-    popular_repo: {
+    languages_by_user : {
         loading: boolean;
         error: Error | null;
-        data: IPopularRepositoryResponse | null;
-    };
-    hottest_repo: {
-        loading: boolean;
-        error: Error | null;
-        data: IHottestRepositoryResponse | null;
-    };
+        data: ILanguagesResponse | null;
+    },
     latest_challenge_attendances_by_user: {
         loading: boolean;
         error: Error | null;
         data: ILatestChallengeAttendancesByUserResponse | null;
-    };
+    },
+    attendances_by_user : {
+        loading : boolean;
+        error : Error | null;
+        data : IAttendancesInChallengeByUserResponse | null;
+    }
 };

@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import './Card.scss';
 
 interface CardProps {
+    wrapperClassName?:string,
     className? : string,
     header? : {
         title: string,
@@ -26,7 +27,7 @@ const Card = (props :CardProps)=>{
                 </p>
             </div> : <></>
         }
-        <div className="__card-wrapper">
+        <div className={`__card-wrapper ${ props.wrapperClassName || "" }`}>
             { props.children }
         </div>
         {
