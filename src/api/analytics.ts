@@ -3,6 +3,7 @@ import { IJSONResponse } from "./interfaces/JSONReponse";
 import { IUser } from "./interfaces/User";
 import { IExtRepositoryWithoutUser } from "./interfaces/Repository";
 import ICommit from "./interfaces/Commit";
+import { isNullOrUndefined } from "util";
 
 const REACT_API_HOST = process.env.REACT_APP_API_HOST;
 
@@ -20,9 +21,9 @@ export async function getAllAttendances() {
     return res.data;
 }
 
-export async function getAllAttendancesByDates() {
+export async function getAllAttendancesByDates(challenge_id : string) {
     const res = await axios.get<IAllAttendancesByDatesResponse>(
-        `${REACT_API_HOST}/api/analysis/attendances/date`
+        `${REACT_API_HOST}/api/analysis/attendances/${ challenge_id }/date`
     );
     return res.data;
 }
@@ -57,13 +58,14 @@ export interface IGetLangPopularityOptions {
 
 export async function getLangPopularity(options : IGetLangPopularityOptions){
     let uri = "";
-    if(options.challenge_id && options.login){ 
+    
+    if(!isNullOrUndefined(options.challenge_id) && !isNullOrUndefined(options.login)){ 
         uri = `${REACT_API_HOST}/api/analysis/languages/challenges/${options.challenge_id}/users/${options.login}`
     }
-    else if(options.challenge_id && !options.login){
+    else if(isNullOrUndefined(options.challenge_id) && !isNullOrUndefined(options.login)){
         uri = `${REACT_API_HOST}/api/analysis/languages/users/${options.login}`
     }
-    else if(!options.challenge_id && options.login){
+    else if(!isNullOrUndefined(options.challenge_id) && isNullOrUndefined(options.login)){
         uri = `${REACT_API_HOST}/api/analysis/languages/challenges/${options.challenge_id}`
     }
     const res = await axios.get<ILanguagesResponse>(
@@ -79,13 +81,28 @@ export async function getUserRank (challenge_id:string,user_name:string){
     return res.data;
 }
 
+export async function getUsersRankList (challenge_id : string){
+    const res = await axios.get<IUsersRankListResponse>(
+        `${REACT_API_HOST}/api/analysis/attendances/${challenge_id}/rank`
+    );
+    return res.data;
+}
+
 export async function getUserAttendanceToday (challenge_id:string,user_name:string){
     const res = await axios.get<ITodayAttendanceByUserResponse>(
         `${REACT_API_HOST}/api/analysis/attendances/${challenge_id}/users/${user_name}/today`
     );
     return res.data;
 }
-
+export interface IUsersRankListItem{
+    info : IUser,
+    rank : number,
+    total : number,
+    attendances_count : number,
+}
+interface IUsersRankListResponse extends IJSONResponse {
+    data : [IUsersRankListItem]
+}
 interface SummaryInterface {
     // 현재 저장된 저장소 수
     repo_cnt: number;

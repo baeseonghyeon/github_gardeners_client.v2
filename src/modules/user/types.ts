@@ -1,6 +1,6 @@
 import * as actions from "./actions";
 import { ActionType } from "typesafe-actions";
-import { IUserResponse, IUsersResponse, IUserAuthReponse } from "../../api/user";
+import { IUserResponse, IUsersResponse, IUserAuthReponse, IUsersInProjectReponse } from "../../api/user";
 
 export type UserAction = ActionType<typeof actions>;
 
@@ -24,5 +24,10 @@ export type UserState = {
         loading : boolean,
         error : Error | null,
         data : IUserAuthReponse | null,
+    },
+    users_in_project : {
+        loading : boolean,
+        error : Error | null,
+        data : IUsersInProjectReponse | null,
     }
 };

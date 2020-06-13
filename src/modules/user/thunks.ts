@@ -6,12 +6,14 @@ import {
     getUsersInfo,
     getUsersSearch,
     getUserAuth,
+    getUsersInProject,
 } from "../../api/user";
 import {
     getUserInfoAsync,
     getUsersInfoAsync,
     getUsersSearchAsync,
     getUserAuthAsync,
+    getUsersInProjectAsync,
 } from "./actions";
 
 export function getUserInfoThunk(
@@ -125,4 +127,25 @@ export function clearUserAuthThunk(): ThunkAction<
         const { cancel } = getUserAuthAsync;
         dispatch(cancel());
     };
+}
+
+export function getUsersInProjectThunk(challenge_id : string) : ThunkAction<void, RootState, null, UserAction>{
+    return async dispatch => {
+        const { request, success, failure } = getUsersInProjectAsync;
+        dispatch(request());
+        try{
+            const response = await getUsersInProject(challenge_id);
+            dispatch(success(response));
+        }
+        catch(e){
+            dispatch(failure(e));
+        }
+    }
+}
+
+export function clearUsersInProjectThunk() : ThunkAction<void, RootState, null, UserAction>{
+    return dispatch => {
+        const { cancel } = getUsersInProjectAsync;
+        dispatch(cancel());
+    }
 }

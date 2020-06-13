@@ -19,6 +19,10 @@ import {
     GET_USER_AUTH_SUCCESS,
     GET_USER_AUTH_ERROR,
     CLEAR_USER_AUTH,
+    GET_USERS_IN_PROJECT,
+    GET_USERS_IN_PROJECT_SUCCESS,
+    GET_USERS_IN_PROJECT_ERROR,
+    CLEAR_USERS_IN_PROJECT,
 
 } from "./actions";
 
@@ -42,7 +46,13 @@ const initialState: UserState = {
         loading: false,
         error : null,
         data : null,
-    }
+    },
+    users_in_project:{
+        loading: false,
+        error : null,
+        data : null,
+    },
+    
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
@@ -163,6 +173,36 @@ const user = createReducer<UserState, UserAction>(initialState, {
         ...state,
         user_auth : {
             ...initialState.user_auth
+        }
+    }),
+    [GET_USERS_IN_PROJECT]: (state) => ({
+        ...state,
+        users_in_project: {
+            loading: true,
+            error: null,
+            data: null,
+        },
+    }),
+    [GET_USERS_IN_PROJECT_SUCCESS]: (state, action) => ({
+        ...state,
+        users_in_project: {
+            loading: false,
+            error: null,
+            data: action.payload,
+        },
+    }),
+    [GET_USERS_IN_PROJECT_ERROR]: (state, action) => ({
+        ...state,
+        users_in_project: {
+            loading: false,
+            error: action.payload,
+            data: null,
+        },
+    }),
+    [CLEAR_USERS_IN_PROJECT]: (state:any)=>({
+        ...state,
+        users_in_project : {
+            ...initialState.users_in_project
         }
     }),
 });

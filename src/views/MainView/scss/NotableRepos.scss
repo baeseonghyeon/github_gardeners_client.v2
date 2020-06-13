@@ -1,0 +1,91 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.notable-repos-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 480px;
+    // flex-grow: 1;
+
+    .repo-item-card-container{
+        flex-shrink: 1;
+        flex-grow: 0;
+
+        @include tab{
+            &.popular{
+                margin-top: 20px;
+            }
+        }
+
+
+        &.hottest{
+            .repo-item-container{
+                background-color: $colors-green;
+            }
+        }
+        &.popular{
+            .repo-item-container{
+                background-color: $colors-blue;
+            }
+        }
+
+        .repo-item-card-wrapper{
+            display: flex;
+            flex-direction: column;
+            .repo-item-container{
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100%;
+                border-radius: 5px;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                @include common-box-shadow;
+                
+                .repo-item-header{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 10px 10px;
+                    // margin-bottom: 10px;
+                    .repo-item-owner{
+                        font-size: .8rem;
+                        color:$colors-white;
+                    }
+                    .repo-item-title{
+                        font-size: 1rem;
+                        color: $colors-white;
+                    }
+                    .repo-item-desc{
+                        font-size: .8rem;
+                        color: $colors-text-sub;
+                    }
+                }
+                .repo-stats{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    margin: 0px 10px;
+                    .repo-stat-item{
+                        display: flex;
+                        flex-direction: column;
+                        padding: 5px;
+                        .repo-stat-item-name{
+                            color: $colors-white;
+                            font-size: .8rem;
+                            text-align: center;
+                        }
+                        .repo-stat-item-value{
+                            margin: 10px 0;
+                            color:$colors-white;
+                            font-size: 2rem;
+                            line-height: 2rem;
+                            font-weight: 800;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

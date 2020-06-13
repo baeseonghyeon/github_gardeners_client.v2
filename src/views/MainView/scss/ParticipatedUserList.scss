@@ -1,0 +1,35 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.participated-user-list-container{
+    .participated-user-list-wrapper{
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        margin-top: 15px;
+        .participated-user{
+            img{
+                width: 60px;
+                height: 60px;
+            }
+            a{
+                font-size: 1rem;
+                width: max-content;
+            }
+            p{
+                font-size: .8rem;
+            }
+            svg{
+                color:$colors-green;
+            }
+            &.not-attended {
+                img{
+                    filter : grayscale(100);
+                }
+                svg{
+                    color:$colors-yellow;
+                }
+            }
+        }
+    }
+}

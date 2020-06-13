@@ -4,6 +4,7 @@ import {
     IUserResponse,
     IUsersResponse,
     IUserAuthReponse,
+    IUsersInProjectReponse,
 } from "../../api/user";
 import { AxiosError } from "axios";
 
@@ -27,6 +28,10 @@ export const GET_USER_AUTH_SUCCESS = "user/GET_USER_AUTH_SUCCESS";
 export const GET_USER_AUTH_ERROR = "user/GET_USER_AUTH_ERROR";
 export const CLEAR_USER_AUTH = "user/GET_USER_AUTH";
 
+export const GET_USERS_IN_PROJECT= "user/GET_USERS_IN_PROJECT";
+export const GET_USERS_IN_PROJECT_SUCCESS = "user/GET_USERS_IN_PROJECT_SUCCESS";
+export const GET_USERS_IN_PROJECT_ERROR = "user/GET_USERS_IN_PROJECT_ERROR";
+export const CLEAR_USERS_IN_PROJECT = "user/CLEAR_USERS_IN_PROJECT";
 
 // 비동기 액션 생성
 export const getUserInfoAsync = createAsyncAction(
@@ -56,3 +61,11 @@ export const getUserAuthAsync = createAsyncAction(
     GET_USER_AUTH_ERROR,
     CLEAR_USER_AUTH
 )<undefined, IUserAuthReponse, AxiosError, undefined>();
+
+
+export const getUsersInProjectAsync = createAsyncAction(
+    GET_USERS_IN_PROJECT,
+    GET_USERS_IN_PROJECT_SUCCESS,
+    GET_USERS_IN_PROJECT_ERROR,
+    CLEAR_USERS_IN_PROJECT
+)<undefined, IUsersInProjectReponse, AxiosError, undefined>();

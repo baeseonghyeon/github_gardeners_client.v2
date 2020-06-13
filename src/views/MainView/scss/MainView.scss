@@ -7,6 +7,7 @@
     width: 100%;
     height: 100%;
     position: relative;
+    overflow-y: hidden;
 
     // 헤더 관련
     // .main-header-container{  }
@@ -14,16 +15,26 @@
     // 메인 화면 데이터 관련
     .main-contents-container{
         display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        flex-shrink: 1;
+        // flex-grow: 1;
+        // flex-shrink: 1;
         overflow-y:auto;
+        padding-bottom: 50px;
+        
+        @include pc-only{
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        @include tab{
+            flex-wrap: nowrap;
+            flex-direction: column;
+        }
 
         .main-content-item{
             display: flex;
-            margin: 20px;
+            margin : 10px 15px;
             flex-direction: column;
-
+            
             .main-content-item-header{
                 .__text_header_container_title{
                     font-size: 1.2rem; 
@@ -65,6 +76,24 @@
                         }
                         
                     }                   
+                }
+            }
+            &.flex-pc-3{
+                @include pc-only{
+                    flex-basis: 100%;
+                }
+            }
+            &.flex-pc-1{
+                @include pc-only{
+                    flex-basis:31%;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    // margin-right: ;
+                }
+            }
+            &.no-margin{
+                @include pc-only{
+                    margin : 10px 0;
                 }
             }
         }

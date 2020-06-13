@@ -6,6 +6,7 @@ interface UserInfoProps {
     avatar_url: string,
     login: string,
     user_name?: string,
+    name?: string,
     id: Number | number,
     className?: string,
     avatar_size?: number,
@@ -46,10 +47,10 @@ const UserInfo = (props: UserInfoProps) => {
                 {props.login}
             </a>
             {
-                (!isNullOrUndefined(props.user_name)) ?
+                (!isNullOrUndefined(props.name) || !isNullOrUndefined(props.user_name)) ?
                     <p 
                     style={ !isNullOrUndefined(props.desc_size) ? { fontSize: props.desc_size } : {} }
-                    className="__user_info_username">{props.user_name}</p> :
+                    className="__user_info_username">{(props.name || props.user_name)}</p> :
                     <></>
             }
         </div>

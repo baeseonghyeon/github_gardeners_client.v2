@@ -1,8 +1,8 @@
 import axios from "axios";
-import {IJSONResponse} from "./interfaces/JSONReponse";
-import { IUser } from './interfaces/User';
-import { IChallenge } from './interfaces/Challenge';
-import {ICommit } from './interfaces/Commit';
+import { IJSONResponse } from "./interfaces/JSONReponse";
+import { IUser } from "./interfaces/User";
+import { IChallenge } from "./interfaces/Challenge";
+import { ICommit } from "./interfaces/Commit";
 
 const REACT_API_HOST = process.env.REACT_APP_API_HOST;
 
@@ -13,7 +13,7 @@ export async function getUserInfo(user_name: string) {
     return response.data;
 }
 
-export async function getUserAuth(){
+export async function getUserAuth() {
     const response = await axios.get<IUserAuthReponse>(
         `${REACT_API_HOST}/api/users/auth`
     );
@@ -21,56 +21,74 @@ export async function getUserAuth(){
 }
 
 export async function getUsersInfo() {
-    const response = await axios.get<IUsersResponse>(`${REACT_API_HOST}/api/users`);
+    const response = await axios.get<IUsersResponse>(
+        `${REACT_API_HOST}/api/users`
+    );
     return response.data;
 }
 
-export async function deleteUser(user_name:string){
+export async function deleteUser(user_name: string) {
     const response = await axios.delete<IJSONResponse>(
         `${REACT_API_HOST}/api/users/${user_name}`
     );
     return response.data;
 }
 
-export async function fetchUserInfo (user_name:string){
+export async function fetchUserInfo(user_name: string) {
     const response = await axios.post<IJSONResponse>(
         `${REACT_API_HOST}/api/users/${user_name}/fetch`
     );
     return response.data;
 }
 
-export async function getUsersSearch(user_name:string){
+export async function getUsersSearch(user_name: string) {
     const reponse = await axios.get<IUsersResponse>(
         `${REACT_API_HOST}/api/users/search`,
         {
             params: {
-                user_name : user_name.trim()
-            }
+                user_name: user_name.trim(),
+            },
         }
     );
     return reponse.data;
 }
 
-export async function getUserLatestFetchLog(user_name:string){
+export async function getUserLatestFetchLog(user_name: string) {
     const response = await axios.get<IJSONResponse>(
         `${REACT_API_HOST}/api/users/${user_name}/fetch`
     );
     return response.data;
 }
 
-export interface IUsersResponse extends IJSONResponse{
-    data: [IUser]
+export async function getUsersInProject(challenge_id: string) {
+    const response = await axios.get<IUsersInProjectReponse>(
+        `${REACT_API_HOST}/api/users/challenges/${challenge_id}`
+    );
+    return response.data;
 }
 
-export interface IUserResponse extends IJSONResponse{
-    data: IUser
+export interface IUsersResponse extends IJSONResponse {
+    data: [IUser];
 }
 
-export interface IUserAuthReponse extends IJSONResponse{
-    data:{
-        is_authenticated : boolean,
-        challenges : [IChallenge],
-        user : IUser,
-        latestCommits : [ICommit],
-    }
+export interface IUserResponse extends IJSONResponse {
+    data: IUser;
+}
+
+export interface IUserAuthReponse extends IJSONResponse {
+    data: {
+        is_authenticated: boolean;
+        challenges: [IChallenge];
+        user: IUser;
+        latestCommits: [ICommit];
+    };
+}
+
+export interface IUsersInProjectReponse extends IJSONResponse {
+    data: [
+        {
+            user: IUser;
+            attended: boolean;
+        }
+    ];
 }

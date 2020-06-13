@@ -4,7 +4,7 @@ import { AnalyticsAction } from "./types";
 import {
     getSummary,
     getAllAttendances,
-    getLanguagesPopularity,
+    // getLanguagesPopularity,
     getAllAttendancesByDates,
     getLatestChallengeAttendancesByUser,
     getLangPopularity,
@@ -56,7 +56,7 @@ export function getAllAttendancesThunk(): ThunkAction<
     };
 }
 
-export function getAllAttendancesByDatesThunk(): ThunkAction<
+export function getAllAttendancesByDatesThunk(challenge_id:string): ThunkAction<
     void,
     RootState,
     null,
@@ -66,7 +66,7 @@ export function getAllAttendancesByDatesThunk(): ThunkAction<
         const { request, success, failure } = getAllAttendancesByDatesAsync;
         dispatch(request());
         try{
-            const response = await getAllAttendancesByDates();
+            const response = await getAllAttendancesByDates(challenge_id);
             dispatch(success(response));
         }
         catch (e){

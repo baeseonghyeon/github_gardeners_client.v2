@@ -1,0 +1,19 @@
+@import "../../../scss/mixins";
+@import "../../../scss/variables";
+
+.current-attendant-chart-container{
+    .current-attendant-chart-wrapper{
+        // display: flex;
+        // overflow-x:auto;
+        margin-top: 15px;
+        >div{
+            @include pc-only{
+                width: 100% !important;
+            }
+            @include tab{
+                width: 800px !important;
+            }
+        }
+    }
+}
+
