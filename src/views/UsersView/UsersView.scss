@@ -86,6 +86,20 @@
                     }
                     @include tab{
                         border-bottom: none;
+                        img{
+                            width: 60px;
+                            height: 60px;
+                        }
+                        a{
+                            width: max-content;
+                            font-size: 1rem;
+                            line-height: 1rem;
+                        }
+                        p{
+                            width: max-content;
+                            font-size: .8rem;
+                            width: max-content;
+                        }
                     }
                     
                     .btn{
