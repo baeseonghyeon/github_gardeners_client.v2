@@ -113,7 +113,7 @@ const TokenManageView = ()=>{
 
     return <div className="token-manage-view">
         <div className="token-manage-header">
-            <TextHeader title="프로젝트 참여 신청 관리" desc="프로젝트 참여 신청 목록입니다. 참여 요청을 승인 혹은 반려 할 수 있습니다"/>
+            <TextHeader title="관리자 인증 토큰 관리" desc="관리자 권한 인가를 위한 인증 토큰을 관리합니다. 생성된 토큰을 확인하거나 비활성화 시킬 수 있습니다. 새로운 토큰을 생성할 수도 있습니다. 이 때 토큰은 1시간의 유효기간을 갖습니다."/>
             <CustomButton className="generate-btn" text="토큰 생성" onClick={ ()=>fn.generate() }/>
         </div>
         <div className="token-manage-container">
