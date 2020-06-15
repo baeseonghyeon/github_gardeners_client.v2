@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import './scss/UserProjectDetail.scss';
 
 import { TextHeader, Card } from '../../components';
 import Carousel from 'nuka-carousel';
-import { isNullOrUndefined, isNull } from 'util';
+import { isNullOrUndefined } from 'util';
 import * as Lib from '../../lib';
 
 import { RootState } from '../../modules/';

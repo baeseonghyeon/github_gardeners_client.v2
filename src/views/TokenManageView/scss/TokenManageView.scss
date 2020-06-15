@@ -1,0 +1,95 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.token-manage-view{
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    
+    .token-manage-header{
+        margin: 20px;
+        .generate-btn{
+            p{ font-size: 1rem; }
+            width: 90px;
+            height: 35px;
+            margin-left: auto;
+        }
+    }
+    .token-manage-container{
+        overflow-x: auto;
+        display: flex;
+        flex-basis: 100%;
+        flex-direction: column;
+        margin: 0 20px;
+        padding-bottom: 20px;
+        .token-manage-table{
+            // min-width: 100%;
+            
+            @include pc-only{
+                width: 100%;
+            }
+            @include tab{
+                width: max-content;
+            }
+            thead{
+                th{ 
+                    font-size: 1rem; color : $colors-white; font-weight: 800;
+                    text-align: center;
+                }
+            }
+            tbody{
+                tr{
+                    td{ 
+                        padding: 10px 5px;
+                        font-size: 1rem; color : $colors-white; font-weight: 300;
+                        text-align: center;
+                        .available-token{ color: $colors-green; }
+                        .expired-token{ color:$colors-text-sub; text-decoration:line-through; }
+                        .btns{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            align-items: center;
+    
+                            .disable-btn {
+                                background-color: $colors-red;
+                                width: 80px;
+                                height: 30px;   
+                                p{font-size: .9rem;}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .page-controls{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 15px;
+
+            @include pc-only{
+                justify-content: flex-end;
+            }
+            @include tab{
+                justify-content: flex-start;
+            }
+
+            p{ color: $colors-white; }
+            .paging-btn{
+                &.disabled {
+                    background-color: $colors-light-gray;
+                    p{color: $colors-dark-alpha;}
+                }
+                width: 55px;
+                height: 30px;   
+                margin-left: 10px;
+            }
+        }
+    }
+}

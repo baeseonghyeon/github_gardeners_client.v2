@@ -1,14 +1,14 @@
 @import '../../../scss/mixins';
 @import '../../../scss/variables';
 
-.main-container{
-
-    .main-header-container{
+.request-manage-view{
+    .request-header-container{
         display: flex;
         flex-direction: row;
         flex-grow: 0;
         flex-shrink: 0;
         flex-basis: 60px;
+        min-height: 60px;
         border-bottom: 1px solid $colors-light-dark;
         position: relative;
         
@@ -20,7 +20,6 @@
             @include pc-only{
                 display: none;
             }
-            
             .header-collapse-btn{
                 svg{ 
                     font-size: 1.5rem !important;
@@ -62,8 +61,7 @@
                 overflow-y: auto;
                 transition: .3s;
                 background-color: $colors-light-dark;
-                z-index: 10;
-                @include common-box-shadow;
+                
                 &.collapsed{
                     transition: .3s;
                     height: 0%;
@@ -118,44 +116,6 @@
                         color : $colors-white;
                         min-height: max-content;
                     }
-                }
-            }
-        }
-
-        .header-user-info{
-            display: flex;
-            flex-direction: row;            
-            align-items: center;
-            justify-content: flex-start;
-            margin-left: auto;
-            margin-right: 20px;
-            .avatar{
-                flex: 0 1 auto;
-                img{ 
-                    border-radius: 50%;
-                    width: 38px;
-                    height: 38px;
-                }
-                .avatar-placeholder{
-                    width: 38px;
-                    height: 38px;
-                    background-color: $colors-material-blue;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    svg{ color:$colors-white; }
-                }
-            }
-            .login{
-                margin-left: 10px;
-                font-size: .9rem;
-                color: $colors-white;
-                @include pc-only{
-                    display: flex;
-                }
-                @include tab{
-                    display: none;
                 }
             }
         }

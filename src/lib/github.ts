@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+
 const LanguageColors = require("language-colors");
 
 export const getAvatarUrl = (id: Number | number, size?: number)=>{

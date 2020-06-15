@@ -1,6 +1,5 @@
 import React from 'react';
 import './CustomButton.scss';
-import Indicator from '../Indicator';
 
 interface ICustomButtonProps {
     className?: string,

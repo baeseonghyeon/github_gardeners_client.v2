@@ -3,6 +3,7 @@ import { IJSONResponse } from "./interfaces/JSONReponse";
 import { IUser } from "./interfaces/User";
 import { IChallenge } from "./interfaces/Challenge";
 import { ICommit } from "./interfaces/Commit";
+import { IJoinRequest } from './interfaces/JoinRequest';
 
 const REACT_API_HOST = process.env.REACT_APP_API_HOST;
 
@@ -65,6 +66,24 @@ export async function getUsersInProject(challenge_id: string) {
         `${REACT_API_HOST}/api/users/challenges/${challenge_id}`
     );
     return response.data;
+}
+
+export async function getUserJoinRequest(challenge_id : string){
+    const response = await axios.get<IGetUserJoinRequestResponse>(
+        `${REACT_API_HOST}/api/users/challenges/${challenge_id}/request`
+    );
+    return response.data;
+}
+
+export async function postUserJoinRequest(challenge_id:string){
+    const response = await axios.post<IJSONResponse>(
+        `${REACT_API_HOST}/api/users/challenges/${challenge_id}/request`
+    );
+    return response.data;
+}
+
+interface IGetUserJoinRequestResponse extends IJSONResponse{
+    data : IJoinRequest
 }
 
 export interface IUsersResponse extends IJSONResponse {

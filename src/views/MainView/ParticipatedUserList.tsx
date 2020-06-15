@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React , { useEffect, useState } from 'react';
+import React , { useEffect } from 'react';
 
 import './scss/ParticipatedUserList.scss';
 
@@ -15,7 +15,7 @@ import { GoVerified, GoUnverified } from 'react-icons/go';
 const ParticipatedUserList = ()=>{
     const { selectedChallenge } = useSelector((state:RootState)=>state.main_view);
     const dispatch = useDispatch();
-    const { data, loading }  = useSelector((state:RootState)=>state.user.users_in_project);
+    const { data }  = useSelector((state:RootState)=>state.user.users_in_project);
 
     useEffect(() => {
         if(!isNullOrUndefined(selectedChallenge)){

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { AnimatedTextInput } from '../../components';
 import { getUsersSearchThunk, clearUsersSearchThunk } from '../../modules/user/';
 import { useDispatch } from 'react-redux';

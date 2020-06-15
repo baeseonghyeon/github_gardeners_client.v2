@@ -6,17 +6,18 @@ import { RootState } from '../../modules/';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRepositoriesByUserThunk, clearRepositoriesByUserThunk } from '../../modules/repositories';
 import { isNullOrUndefined } from 'util';
-import { TextHeader, ExternalLink, UserInfo, CustomButton } from '../../components';
+import { ExternalLink, UserInfo, CustomButton } from '../../components';
 import * as Lib from '../../lib';
 import { IRepositoryWithUser, IRepositoryLanguage } from '../../api/interfaces/Repository';
-// import { ILanguagesResponse } from '../../api/analytics';
+
 import { GoStar, GoRepoForked } from 'react-icons/go';
 import moment from 'moment';
 
 import { useHistory } from 'react-router';
 
 interface IUserRepoItemProps {
-    data: IRepositoryWithUser
+    data: IRepositoryWithUser,
+    key? : number | string,
 }
 
 const UserRepoItem = (props: IUserRepoItemProps) => {
@@ -42,12 +43,12 @@ const UserRepoItem = (props: IUserRepoItemProps) => {
         lanPercBar: (languages: [IRepositoryLanguage]) => {
             return <div className="languages-percentage-bar" >
                 {
-                    languages.map(item => {
+                    languages.map((item) => {
                         const _styles: any = {
                             width: fn.lanPerc(item.rate, lanUsage),
                             ...Lib.Github.lanColor(item.name),
                         }
-                        return <span key={item.name} className="language-percentage" style={_styles}></span>
+                        return <span key={item.name + (new Date()).getDate().toString()} className="language-percentage" style={_styles}></span>
                     })
                 }
             </div>
@@ -97,6 +98,7 @@ const UserRepoItem = (props: IUserRepoItemProps) => {
             {
                 props.data.contributor.map((user, idx) => {
                     return <UserInfo
+                        key={idx}
                         className="contributor-item"
                         isVertical={true}
                         onClick={() => _history.push(`/users/${user.login}`)}
@@ -147,8 +149,8 @@ const UserReposView = (props: IUserReposViewProps) => {
 
     return <div className="user-repos-list-container">
         {
-            displayItems.map(repo => {
-                return <UserRepoItem data={repo} />
+            displayItems.map((repo,idx) => {
+                return <UserRepoItem data={repo} key={idx}/>
             })
         }
         {

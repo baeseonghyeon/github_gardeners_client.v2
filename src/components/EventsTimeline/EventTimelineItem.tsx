@@ -31,7 +31,7 @@ const EventsTimelineItem = (props: IEventsTimelineItemProps) => {
             <div className="activity-commits">
                 {
                     props.event.payload.commits.map((commit, idx)=>{
-                        return <div className="activity-commit-item">
+                        return <div className="activity-commit-item" key={ idx }>
                             <GoGitCommit/>
                             <ExternalLink text={commit.message} 
                                 to={

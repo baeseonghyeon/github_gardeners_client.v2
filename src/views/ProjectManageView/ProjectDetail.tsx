@@ -6,9 +6,12 @@ import { isNullOrUndefined } from 'util';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { putChallenge, deleteChallenge } from '../../api/challenge';
+import { putChallenge, deleteChallenge, deleteUserFromChallenge } from '../../api/challenge';
 import { useDispatch } from 'react-redux';
 import { getAllChallengesThunk } from '../../modules/challenges/thunks';
+import { TextHeader, UserInfo } from '../../components';
+
+
 
 interface ProjectDetailProps {
     data : ChallengeInterface,
@@ -66,6 +69,25 @@ const ProjectDetail = (props: ProjectDetailProps)=>{
                     alert("오류가 발생했습니다. 잠시 후 다시시도해주세요");
                 }
             }
+        },
+        delUser : async(login:string)=>{
+            if(window.confirm("사용자를 프로젝트에서 제외할까요?")){
+                try{
+                    const result = await deleteUserFromChallenge(
+                        props.data.id,
+                        login
+                    );
+                    if(result.code > 0){
+                        dispatch(getAllChallengesThunk());
+                    }
+                    else{
+                        alert(result.message + " | " + result.error.message);
+                    }
+                }
+                catch(e){
+                    alert("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
+                }
+            }
         }
     }
 
@@ -89,6 +111,18 @@ const ProjectDetail = (props: ProjectDetailProps)=>{
                 deleteButtonClick={ fn.del }
             />
         </div>
+        <div className="project-participants-list-container">
+            <TextHeader title="참여 중인 정원사" desc="현재 참여중인 정원사들입니다 클릭시 현재 프로젝트에서 제외할 수 있습니다"/>
+            <div className="project-participants-list-wrapper">
+                {  
+                    props.data.participants.map((item,idx)=>{
+                        return <UserInfo key={idx} className="project-participant-item" onClick={ ()=>fn.delUser(item.login) } { ...item } />
+                    })
+                }
+                
+            </div>
+        </div>
+
     </div>
 };
 

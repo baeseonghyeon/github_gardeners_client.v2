@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import './navbar.scss';
 
 import { Logo } from '../';
-import { MdAssessment, MdEventNote, MdInfo, MdFace, MdQueue, MdMenu, MdClose } from 'react-icons/md';
+import { MdAssessment, MdEventNote, MdInfo, MdFace, MdQueue, MdMenu, MdClose, MdVpnKey } from 'react-icons/md';
+import { RiAdminLine } from 'react-icons/ri';
 import { FaGithub } from 'react-icons/fa';
 import { FiLogOut, FiLogIn } from 'react-icons/fi';
 import { NavLink, Link } from 'react-router-dom';
@@ -25,12 +27,12 @@ const Navbar = () => {
     const dispatch = useDispatch();
 
     // 필요하면 추후 풀 것
-    // const history = useHistory();
-    // history.listen(()=>{
-    //     if(!isCollapsed){
-    //         setIsCollapsed(true);
-    //     }
-    // });
+    const history = useHistory();
+    history.listen(()=>{
+        if(!isCollapsed){
+            setIsCollapsed(true);
+        }
+    });
 
     useEffect(()=>{
         dispatch(getUserAuthThunk());
@@ -70,12 +72,47 @@ const Navbar = () => {
                                     <p className="menu-item-label">정원사들</p>
                                 </NavLink>
                             </li>
-                            <li className="menu-item">
-                                <NavLink className="menu-item-link" activeClassName="active" to="/projects">
-                                    <MdEventNote />
-                                    <p className="menu-item-label">프로젝트</p>
-                                </NavLink>
-                            </li>
+                            {
+                                !isNullOrUndefined(user_auth.data) && 
+                                !isNullOrUndefined(user_auth.data.data) && 
+                                !isNullOrUndefined(user_auth.data.data.user) && 
+                                user_auth.data.data.user.is_admin === true ? 
+                                <>
+                                    <li className="menu-item">
+                                        <NavLink className="menu-item-link" activeClassName="active" to="/projects">
+                                            <MdEventNote />
+                                            <p className="menu-item-label">프로젝트</p>
+                                        </NavLink>
+                                    </li>
+                                    <li className="menu-item">
+                                        <NavLink className="menu-item-link" activeClassName="active" to="/requests">
+                                            <MdQueue />
+                                            <p className="menu-item-label">등록 신청</p>
+                                        </NavLink>
+                                    </li>
+                                    <li className="menu-item">
+                                        <NavLink className="menu-item-link" activeClassName="active" to="/tokens">
+                                            <MdVpnKey />
+                                            <p className="menu-item-label">관리자 토큰 관리</p>
+                                        </NavLink>
+                                    </li>
+                                </>
+                                : <></>
+                            }
+                            {
+                                !isNullOrUndefined(user_auth.data) && 
+                                !isNullOrUndefined(user_auth.data.data) && 
+                                !isNullOrUndefined(user_auth.data.data.user) && 
+                                user_auth.data.data.is_authenticated === true && 
+                                user_auth.data.data.user.is_admin === false ? 
+                                <li className="menu-item">
+                                    <NavLink className="menu-item-link" activeClassName="active" to="/admin_auth">
+                                        <RiAdminLine />
+                                        <p className="menu-item-label">관리자 권한</p>
+                                    </NavLink>
+                                </li>
+                                : <></>
+                            }
                         </ul>
                     </div>
                     <div className="navbar-footer">

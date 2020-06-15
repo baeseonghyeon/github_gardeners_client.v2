@@ -11,6 +11,7 @@ export interface IUser {
     bio: string;
     api_url: string;
     events_url: string;
+    is_admin : boolean;
 };
 
 export default IUser;

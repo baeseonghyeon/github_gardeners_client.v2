@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IUser } from '../../api/interfaces/User';
-import { isNullOrUndefined, isNull } from 'util';
+import { isNullOrUndefined } from 'util';
 import { IUsersResponse } from '../../api/user';
 import { isMobile, isTablet } from 'react-device-detect';
 

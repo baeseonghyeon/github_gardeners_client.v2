@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import './scss/LanguageUsageChart.scss';
@@ -18,7 +19,7 @@ interface LanguageUsageChartProps{
 
 const LanguageUsageChart = (props:LanguageUsageChartProps)=>{
     const dispatch = useDispatch();
-    const { data, loading } = useSelector((state:RootState)=>state.analytics.languages);
+    const { data } = useSelector((state:RootState)=>state.analytics.languages);
     const [chartOptions, setChartOptions] = useState();
     const initialOptions: any = {
         ...HighChartTheme.Dark,

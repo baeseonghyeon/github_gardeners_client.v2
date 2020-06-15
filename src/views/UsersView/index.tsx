@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import { RootState } from '../../modules';
 import { getUsersInfoThunk } from '../../modules/user/thunks';
-import { getEventsThunk, getEventsByUserThunk } from '../../modules/events/thunks';
+import { getEventsThunk } from '../../modules/events/thunks';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './UsersView.scss';
@@ -14,7 +15,7 @@ import UserList from './UserList';
 const UsersView = () => {
     const _dispatch = useDispatch();
     const { users, searched_users } = useSelector((state: RootState) => state.user);
-    const { events, events_by_user } = useSelector((state: RootState) => state.event);
+    const { events } = useSelector((state: RootState) => state.event);
     const [isSearched, setIsSearched] = useState(false);
 
     useEffect(() => {

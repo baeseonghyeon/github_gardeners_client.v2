@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import './ProjectManage.scss';
 
@@ -16,6 +17,7 @@ import Carousel from 'nuka-carousel';
 
 import { isNullOrUndefined } from 'util';
 import ChallengeInterface from '../../api/interfaces/Challenge';
+import { useHistory } from 'react-router';
 
 enum projectManageViewState {
     EDIT,
@@ -29,6 +31,7 @@ const ProjectManageView = () => {
     const [ selectedProjectId, setSelectedProjectId ] = useState("");
     const [ manageMode, setManageMode ] = useState(projectManageViewState.EDIT);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getAllChallengesThunk());
@@ -49,8 +52,9 @@ const ProjectManageView = () => {
     const ui = {
         form : function(manageMode:projectManageViewState, challenge_id: string , challenges? : [ChallengeInterface]){
             if(!isNullOrUndefined(user_auth.data) && !isNullOrUndefined(user_auth.data.data)){
-                if(!user_auth.data.data.is_authenticated){
-                    return <ProjectNotAuthenticated/>;
+                if(!user_auth.data.data.is_authenticated || !user_auth.data.data.user.is_admin){
+                    history.push("/");
+                    return <ProjectNotAuthenticated/>; 
                 }
             }
             if(manageMode === projectManageViewState.EDIT){

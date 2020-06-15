@@ -1,5 +1,4 @@
 import { createAsyncAction } from "typesafe-actions";
-import GitFarmResponse from "../../api/interfaces/JSONReponse";
 import {
     IUserResponse,
     IUsersResponse,

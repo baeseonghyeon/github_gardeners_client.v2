@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
@@ -5,10 +6,6 @@ import { TextHeader } from '../../components';
 
 import './scss/UserProjectDetailItems.scss';
 
-import { RootState } from '../../modules';
-import { useDispatch, useSelector } from 'react-redux';
-import { getLangPopularityByUserThunk, getAttendancesByUserThunk } from '../../modules/analytics/thunks';
-import { getHottestRepoInProjectByUserThunk } from '../../modules/repositories/thunks';
 import { getUserAttendanceToday, getUserRank } from '../../api/analytics';
 
 import { IoMdCheckmarkCircleOutline, IoMdCheckmarkCircle } from 'react-icons/io';

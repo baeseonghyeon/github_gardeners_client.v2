@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React , { useEffect,useState } from 'react';
 
 import './scss/UserRankList.scss';
@@ -40,7 +41,7 @@ const UserRankList = (props:UserRankListProps)=>{
     wrapperClassName="user-rank-list-wrapper">
         {
             ranks.map((item,idx)=>{
-                return <div className="user-rank-item">
+                return <div className="user-rank-item" key={ idx } >
                     <p className={`user-rank-text ${ item.rank < 4 ? "rank-" + item.rank : "" }`}>
                         <b>{ item.rank }</b>
                         등

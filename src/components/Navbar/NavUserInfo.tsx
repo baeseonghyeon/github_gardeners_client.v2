@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IUserAuthReponse } from '../../api/user';
-import { isNullOrUndefined, isNull } from 'util';
+import { isNullOrUndefined } from 'util';
 import { FaGithubAlt } from 'react-icons/fa';
 
 interface NavUserInfoPropsInterface{
@@ -34,8 +34,8 @@ const NavUserInfo = (props:NavUserInfoPropsInterface) => {
         <div className="status-wrapper">
             {
                 (!isNullOrUndefined(props.user) && !isNullOrUndefined(props.user.data) && props.user.data.is_authenticated) ? 
-                props.user.data.challenges.map(c=>{
-                    return (<div className="status-item">
+                props.user.data.challenges.map((c, idx)=>{
+                    return (<div key={ idx } className="status-item">
                         <p>{ c.title} 참여 중🧑‍💻</p>
                     </div>);
                 }) :     

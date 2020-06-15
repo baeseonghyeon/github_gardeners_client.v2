@@ -1,0 +1,16 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.admin-request-form{
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .admin-request-header{
+        margin:20px
+    }
+    .admin-request-wrapper{
+        margin:20px;
+    }   
+}

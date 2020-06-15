@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import { HighChartTheme } from '../../components';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import moment from 'moment';
 import { RootState } from '../../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLangPopularityByUserThunk } from '../../modules/analytics/thunks';
@@ -16,7 +16,7 @@ interface UserLanguageUsageChartProps {
 }
 const UserLanguageUsageChart = (props: UserLanguageUsageChartProps) => {
     const dispatch = useDispatch();
-    const { data, loading } = useSelector((state: RootState) => state.analytics.languages_by_user);
+    const { data } = useSelector((state: RootState) => state.analytics.languages_by_user);
     const [chartOptions, setChartOptions] = useState();
     const initialOptions: any = {
         ...HighChartTheme.Dark,
