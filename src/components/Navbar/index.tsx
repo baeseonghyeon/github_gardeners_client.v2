@@ -99,20 +99,6 @@ const Navbar = () => {
                                 </>
                                 : <></>
                             }
-                            {
-                                !isNullOrUndefined(user_auth.data) && 
-                                !isNullOrUndefined(user_auth.data.data) && 
-                                !isNullOrUndefined(user_auth.data.data.user) && 
-                                user_auth.data.data.is_authenticated === true && 
-                                user_auth.data.data.user.is_admin === false ? 
-                                <li className="menu-item">
-                                    <NavLink className="menu-item-link" activeClassName="active" to="/admin_auth">
-                                        <RiAdminLine />
-                                        <p className="menu-item-label">관리자 권한</p>
-                                    </NavLink>
-                                </li>
-                                : <></>
-                            }
                         </ul>
                     </div>
                     <div className="navbar-footer">
