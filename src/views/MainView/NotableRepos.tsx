@@ -19,10 +19,8 @@ interface RepoItemProps{
 const RepoItem = (props:RepoItemProps)=>{
     return <div className="repo-item-container">
         <div className="repo-item-header">
-            {/* <p className="repo-item-title">{ props.data.repo.name }</p> */}
-            <ExternalLink className="repo-item-owner" to={ `http://github.com${props.data.repo.name.split("/")[0]}` } text={props.data.repo.name.split("/")[0] + "/"}/>
+            <ExternalLink className="repo-item-owner" to={ `http://github.com/${props.data.repo.name.split("/")[0]}` } text={props.data.repo.name.split("/")[0] + "/"}/>
             <ExternalLink className="repo-item-title" to={`https://github.com/${props.data.repo.name}`} text={ props.data.repo.name.split("/")[1] }/>
-            {/* <p className="repo-item-desc">{ props.data.repo.description }</p> */}
         </div>
         <div className="repo-stats">
             <div className="repo-stat-item">

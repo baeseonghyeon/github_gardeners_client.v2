@@ -8,7 +8,8 @@
     flex-basis: 480px;
     // flex-grow: 1;
     @include tab{
-        min-height: 480px;
+        min-height: 520px;
+        justify-content: space-between;
     }
 
     .repo-item-card-container{
