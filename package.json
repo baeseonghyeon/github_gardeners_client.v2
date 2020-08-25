@@ -17,7 +17,7 @@
     "@types/swiper": "^5.3.1",
     "axios": "^0.19.2",
     "cra-template-typescript": "1.0.3",
-    "highcharts": "^8.0.4",
+    "highcharts": "^8.1.1",
     "highcharts-react-official": "^3.0.0",
     "language-colors": "^1.181.0",
     "moment": "^2.24.0",
