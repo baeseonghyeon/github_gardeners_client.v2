@@ -28,24 +28,33 @@ import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
 import rootReducer from './modules';
 
+import ReactGA from 'react-ga';
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
+// Initialize google analytics page view tracking
+history.listen(location => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
+
 const store = createStore(rootReducer, applyMiddleware(Thunk));
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <>
-          <Navbar />  
+          <Navbar />
           <Switch>
             <Route exact path="/" component={MainView}></Route>
             <Route exact path="/users" component={UsersView}></Route>
             <Route path="/users/:user_name" component={UserDetailView}></Route>
             <Route path="/projects" component={ProjectManageView}></Route>
-            <Route path="/info" component={ InfoView }/>
-            <Route path="/requests" component={ RequestManageView }/>
-            <Route path="/tokens" component={TokenManageView}/>
-            <Route path="/admin_auth" component={UserAdminAuthView}/>
-            <Route path="*" component={ NotFoundView }/>
+            <Route path="/info" component={InfoView} />
+            <Route path="/requests" component={RequestManageView} />
+            <Route path="/tokens" component={TokenManageView} />
+            <Route path="/admin_auth" component={UserAdminAuthView} />
+            <Route path="*" component={NotFoundView} />
           </Switch>
         </>
       </Router>
