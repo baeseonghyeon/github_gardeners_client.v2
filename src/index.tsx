@@ -20,7 +20,7 @@ import TokenManageView from './views/TokenManageView';
 import UserAdminAuthView from './views/UserAdminAuthView';
 
 // ROUTER
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 
 // REDUX
 import { createStore, applyMiddleware } from 'redux';
