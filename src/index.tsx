@@ -35,7 +35,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <>
-          <Navbar />
+          <Navbar />  
           <Switch>
             <Route exact path="/" component={MainView}></Route>
             <Route exact path="/users" component={UsersView}></Route>

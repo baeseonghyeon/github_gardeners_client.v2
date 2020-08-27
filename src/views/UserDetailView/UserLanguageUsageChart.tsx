@@ -98,6 +98,7 @@ const UserLanguageUsageChart = (props: UserLanguageUsageChartProps) => {
                     <HighchartsReact
                         highcharts={Highcharts}
                         options={chartOptions}
+                        
                     />
                 </div> :
                 <div className="user-language-usage-container empty">
