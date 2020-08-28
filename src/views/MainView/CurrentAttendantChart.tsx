@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from '../../components';
 
 import './scss/CurrentAttendantChart.scss';
@@ -10,27 +10,27 @@ import HighchartsReact from 'highcharts-react-official';
 
 import moment from 'moment';
 import { RootState } from '../../modules';
-import { useDispatch, useSelector }  from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllAttendancesByDatesThunk } from '../../modules/analytics/thunks';
 import { isNullOrUndefined } from 'util';
 
-const CurrentAttendantChart = ()=>{
+const CurrentAttendantChart = () => {
     const dispatch = useDispatch();
-    const { selectedChallenge } = useSelector((state:RootState)=>state.main_view);
-    const { data, loading } = useSelector((state:RootState)=>state.analytics.all_attendances_by_dates);
+    const { selectedChallenge } = useSelector((state: RootState) => state.main_view);
+    const { data, loading } = useSelector((state: RootState) => state.analytics.all_attendances_by_dates);
     const initialOptions: any = {
         ...HighChartTheme.Dark,
         chart: {
             ...HighChartTheme.Dark.chart,
             type: "line",
-            width : null,
+            width: null,
         },
         yAxis: {
             ...HighChartTheme.Dark.yAxis,
-            max:100,
+            max: 100,
             labels: {
                 ...HighChartTheme.Dark.yAxis.labels,
-                format: "{value} %",
+                format: "{value:.1f} %",
             },
         },
         xAxis: {
@@ -43,16 +43,16 @@ const CurrentAttendantChart = ()=>{
         }]
     };
 
-    const [ chartOptions, setChartOptions ] = useState(initialOptions);
-    
-    useEffect(()=>{
-        if(!isNullOrUndefined(selectedChallenge)){
+    const [chartOptions, setChartOptions] = useState(initialOptions);
+
+    useEffect(() => {
+        if (!isNullOrUndefined(selectedChallenge)) {
             dispatch(getAllAttendancesByDatesThunk(selectedChallenge?.id));
         }
-    },[selectedChallenge]);
+    }, [selectedChallenge]);
 
-    useEffect(()=>{
-        if(!loading && !isNullOrUndefined(data) && !isNullOrUndefined(data.data)) {
+    useEffect(() => {
+        if (!loading && !isNullOrUndefined(data) && !isNullOrUndefined(data.data)) {
             let _series = [];
             for (const item of data.data) {
                 _series.push({
@@ -67,26 +67,26 @@ const CurrentAttendantChart = ()=>{
             _options.series[0].data = _series;
             setChartOptions(_options);
         }
-        else{
+        else {
             setChartOptions(initialOptions);
         }
-    },[loading, data]);
+    }, [loading, data]);
 
-    useEffect(()=>{
+    useEffect(() => {
         window.dispatchEvent(new Event('resize'));
-    },[chartOptions]);
+    }, [chartOptions]);
 
-    return <Card 
+    return <Card
         className="current-attendant-chart-container"
         wrapperClassName="current-attendant-chart-wrapper"
         header={{
-            title : "일별 출석률",
-            desc : "정원사 님들의 일별 출석 현황입니다",
+            title: "일별 출석률",
+            desc: "정원사 님들의 일별 출석 현황입니다",
         }}>
-            <HighchartsReact
-                highcharts={Highcharts}
-                options={chartOptions}
-            />
+        <HighchartsReact
+            highcharts={Highcharts}
+            options={chartOptions}
+        />
     </Card>
 }
 
