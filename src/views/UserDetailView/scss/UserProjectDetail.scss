@@ -1,23 +1,23 @@
 @import "../../../scss/mixins";
 @import "../../../scss/variables";
 
-.user-project-detail-container{
+.user-project-detail-container {
     flex: 1;
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
-    margin :0px 20px 10px 20px;
+    margin: 0px 20px 10px 20px;
 
-    .user-project-detail-header{
+    .user-project-detail-header {
         display: flex;
         flex-direction: column;
-        flex : 0 1 auto;
+        flex: 0 0 auto;
 
-        .user-participated-projects{
+        .user-participated-projects {
             margin-top: 15px;
             flex: 0 1 auto;
             display: flex;
-            &.empty{
+            &.empty {
                 margin-top: 20px;
                 flex: 1 1 auto;
                 display: flex;
@@ -25,72 +25,81 @@
                 justify-content: center;
                 align-items: center;
             }
-            .user-project-card{
-                .card-content{
+            .user-project-card {
+                .card-content {
                     display: flex;
                     flex: 1;
                     flex-direction: column;
-                    .challenge-title{
-                        color:$colors-white;
+                    .challenge-title {
+                        color: $colors-white;
                         font-size: 1rem;
                         font-weight: 300;
                     }
-                    .challenge-period{
-                        font-size: .8rem;
+                    .challenge-period {
+                        font-size: 0.8rem;
                         font-weight: 400;
                         color: $colors-text-sub;
                     }
-                    .card-footer{
+                    .card-footer {
                         display: flex;
                         flex-direction: row;
                         flex: 1;
-                        color:$colors-white;
-                        font-size: .8rem;
-                        .challenge-from-now{
+                        color: $colors-white;
+                        font-size: 0.8rem;
+                        .challenge-from-now {
                             margin-left: auto;
                             display: flex;
                             flex-direction: row;
                             align-items: center;
-                            p{ margin-left: .3rem; }
+                            p {
+                                margin-left: 0.3rem;
+                            }
 
-                            &.verified{
-                                svg{ color:$colors-green; }
+                            &.verified {
+                                svg {
+                                    color: $colors-green;
+                                }
                             }
-                            &.process{
-                                svg{ color:$colors-yellow; }
+                            &.process {
+                                svg {
+                                    color: $colors-yellow;
+                                }
                             }
-                            &.soon{
-                                svg{ color:$colors-blue; }
+                            &.soon {
+                                svg {
+                                    color: $colors-blue;
+                                }
                             }
                         }
                     }
                 }
-                
-                &.selected{
+
+                &.selected {
                     background-color: $colors-material-blue;
                 }
             }
         }
     }
 
-    .user-project-detail-contents{
+    .user-project-detail-contents {
         display: flex;
         flex-direction: column;
         flex-grow: 0;
+        flex-shrink: 0;
         width: 100%;
         position: relative;
         overflow-y: auto;
         justify-content: center;
         align-items: flex-start;
         margin-top: 15px;
-        &.empty{
+        &.empty {
             align-items: center;
         }
-        
-        .user-project-detail-item{
+
+        .user-project-detail-item {
             display: flex;
             flex-direction: column;
-            flex: 1;    
+            flex: 1;
         }
     }
 }
