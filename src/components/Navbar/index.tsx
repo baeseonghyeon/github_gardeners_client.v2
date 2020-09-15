@@ -54,9 +54,11 @@ const Navbar = () => {
                     <button type="button" className="nav-close-btn" onClick={e => setIsCollapsed(true)}>
                         <MdClose />
                     </button>
-                    <div className="navbar-content-header">
-                        <NavUserInfo user={user_auth.data} />
-                    </div>
+                    {
+                        user_auth.data !== null && user_auth.data !== undefined && user_auth.data.data.is_authenticated ? <div className="navbar-content-header">
+                            <NavUserInfo user={user_auth.data} />
+                        </div> : <></>
+                    }
                     <div className="navbar-content">
                         <ul className="menu-list">
                             <li className="menu-item ">

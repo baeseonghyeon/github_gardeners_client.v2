@@ -76,9 +76,9 @@
                                 }
                                 &.not-participated {
                                     cursor: pointer;
-                                    background-color: $colors-dark-alpha;
+                                    background-color: #191c23;
                                     .summary-item-wrapper .summary-desc b {
-                                        color: $colors-purple;
+                                        color: $colors-green;
                                     }
                                 }
                                 &.requested {
@@ -115,7 +115,7 @@
             }
             &.flex-pc-1 {
                 @include pc-only {
-                    flex-basis: 31%;
+                    flex-basis: 32%;
                     flex-grow: 0;
                     flex-shrink: 1;
                     // margin-right: ;
