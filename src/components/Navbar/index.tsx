@@ -57,7 +57,7 @@ const Navbar = () => {
                     {
                         user_auth.data !== null && user_auth.data !== undefined && user_auth.data.data.is_authenticated ? <div className="navbar-content-header">
                             <NavUserInfo user={user_auth.data} />
-                        </div> : <></>
+                        </div> : <div className="navbar-content-header not-logined"></div >
                     }
                     <div className="navbar-content">
                         <ul className="menu-list">

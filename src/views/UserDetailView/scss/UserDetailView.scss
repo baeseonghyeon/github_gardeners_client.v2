@@ -168,7 +168,7 @@
                     flex-direction: row;
                     align-self: flex-end;
                     @include pc-only {
-                        margin: 30px;
+                        margin: 30px 10px;
                         position: absolute;
                         bottom: 0;
                         left: 15px;

@@ -146,6 +146,11 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+
+                    &.not-logined {
+                        min-height: 60px;
+                        display: flex;
+                    }
                 }
 
                 .avatar-wrapper {
