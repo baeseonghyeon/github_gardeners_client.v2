@@ -35,7 +35,7 @@ const UserRankList = (props: UserRankListProps) => {
     return <Card
         header={{
             title: "출석 순위",
-            desc: "정원사분들의 출석 순위입니다. 10등까지 노출됩니다."
+            desc: "정원사분들의 출석 순위 10등까지 보여줍니다"
         }}
         className="user-rank-list-container"
         wrapperClassName="user-rank-list-wrapper">

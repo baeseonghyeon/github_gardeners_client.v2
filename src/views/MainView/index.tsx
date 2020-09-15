@@ -23,7 +23,6 @@ const MainView = () => {
         <div className="main-contents-container">
             {/* 프로젝트 요약 */}
             <div className="main-content-item flex-pc-3">
-                <TextHeader className='main-content-item-header' title="대시보드" desc="" />
                 <ProjectSummary />
             </div>
             {/* 참가한 정원사 목록 + 오늘 출석 현황 */}
