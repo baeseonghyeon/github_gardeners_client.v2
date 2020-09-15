@@ -1,120 +1,129 @@
-@import '../../../scss/mixins';
-@import '../../../scss/variables';
+@import "../../../scss/mixins";
+@import "../../../scss/variables";
 
-.main-container{
+.main-container {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     position: relative;
-    overflow-y: hidden;
+    overflow-y: auto;
 
     // 헤더 관련
     // .main-header-container{  }
 
     // 메인 화면 데이터 관련
-    .main-contents-container{
+    .main-contents-container {
         display: flex;
-        overflow-y:auto;
+        // overflow-y:auto;
         padding-bottom: 50px;
-        
-        @include pc-only{
+
+        @include pc-only {
             flex-wrap: wrap;
             flex-direction: row;
             justify-content: space-between;
         }
-        @include tab{
+        @include tab {
             flex-wrap: nowrap;
             flex-direction: column;
             // height: max-content;
         }
 
-        .main-content-item{
+        .main-content-item {
             display: flex;
-            margin : 10px 15px;
+            margin: 10px 15px;
             flex-direction: column;
-            @include tab{
+            @include tab {
                 min-height: max-content;
-            }            
-            .main-content-item-header{
-                .__text_header_container_title{
-                    font-size: 1.2rem; 
+            }
+            .main-content-item-header {
+                .__text_header_container_title {
+                    font-size: 1.2rem;
                 }
-                .__text_header_container_desc{
-                    font-size: .9rem;
+                .__text_header_container_desc {
+                    font-size: 0.9rem;
                 }
             }
-            
+
             .main-content-item-wrapper {
                 display: flex;
                 flex-direction: row;
 
-                &.summary{
-                    .summary-items-wrapper{
+                &.summary {
+                    .summary-items-wrapper {
                         margin-top: 20px;
-                        .summary-item{
-                            .summary-item-wrapper{
+                        .summary-item {
+                            .summary-item-wrapper {
                                 display: flex;
                                 flex-direction: column;
-                                .summary-title{
-                                    font-size: .9rem;
+                                .summary-title {
+                                    font-size: 0.9rem;
                                     color: $colors-white;
                                 }
-                                .summary-desc{
-                                    font-size: .9rem;
+                                .summary-desc {
+                                    font-size: 0.9rem;
                                     color: $colors-white;
-                                    b{
+                                    b {
                                         line-height: 1.8rem;
                                         font-size: 1.8rem;
                                     }
                                 }
                             }
-                            &.state{ 
-                                background-color: $colors-green; 
-                                .summary-item-wrapper .summary-desc b{
+                            &.state {
+                                background-color: $colors-green;
+                                .summary-item-wrapper .summary-desc b {
                                     line-height: 2rem;
                                 }
                                 &.not-participated {
                                     cursor: pointer;
                                     background-color: $colors-dark-alpha;
-                                    .summary-item-wrapper .summary-desc b{
+                                    .summary-item-wrapper .summary-desc b {
                                         color: $colors-purple;
                                     }
                                 }
                                 &.requested {
                                     cursor: pointer;
                                     background-color: $colors-dark-alpha;
-                                    .summary-item-wrapper .summary-desc b{
+                                    .summary-item-wrapper .summary-desc b {
                                         color: $colors-green;
                                     }
                                 }
                             }
-                            &.d-day{ background-color: $colors-red; }
-                            &.remain-days{ background-color: $colors-orange; }
-                            &.users{ background-color: $colors-material-blue; }
-                            &.commits{ background-color: $colors-purple; }
-                            &.repos { background-color: $colors-blue; }
+                            &.d-day {
+                                background-color: $colors-red;
+                            }
+                            &.remain-days {
+                                background-color: $colors-orange;
+                            }
+                            &.users {
+                                background-color: $colors-material-blue;
+                            }
+                            &.commits {
+                                background-color: $colors-purple;
+                            }
+                            &.repos {
+                                background-color: $colors-blue;
+                            }
                         }
-                        
-                    }                   
+                    }
                 }
             }
-            &.flex-pc-3{
-                @include pc-only{
+            &.flex-pc-3 {
+                @include pc-only {
                     flex-basis: 100%;
                 }
             }
-            &.flex-pc-1{
-                @include pc-only{
-                    flex-basis:31%;
+            &.flex-pc-1 {
+                @include pc-only {
+                    flex-basis: 31%;
                     flex-grow: 0;
                     flex-shrink: 1;
                     // margin-right: ;
                 }
             }
-            &.no-margin{
-                @include pc-only{
-                    margin : 10px 0;
+            &.no-margin {
+                @include pc-only {
+                    margin: 10px 0;
                 }
             }
         }
