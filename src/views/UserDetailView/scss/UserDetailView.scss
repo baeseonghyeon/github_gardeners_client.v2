@@ -171,11 +171,11 @@
                         margin: 30px;
                         position: absolute;
                         bottom: 0;
-                        right: 20px;
+                        left: 15px;
                     }
                     @include tab {
-                        margin: 0 20px;
-                        align-self: flex-end;
+                        margin: 0 15px;
+                        align-self: flex-start;
                     }
                     .profile-btn {
                         height: 2rem;
