@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import './UserInfo.scss';
 import { isNullOrUndefined } from 'util';
 import { Github } from '../../lib';
+import { useHistory } from 'react-router';
 interface UserInfoProps {
     avatar_url: string,
     login: string,
@@ -18,13 +19,14 @@ interface UserInfoProps {
 }
 
 const UserInfo = (props: UserInfoProps) => {
+    const history = useHistory();
     const _avatar_url = isNullOrUndefined(props.avatar_url) ? Github.getAvatarUrl(props.id) : props.avatar_url
 
     return <div
         className={`__user_info_container ${props.className} ${!isNullOrUndefined(props.isVertical) && props.isVertical ? "vertical" : ""}`}
         onClick={props.onClick}
     >
-        <div className="__user_info_avatar">
+        <div className="__user_info_avatar" onClick={() => history.push(`/users/${props.login}`)}>
             <img
                 src={_avatar_url}
                 alt={props.user_name + "의 아바타 이미지"}
@@ -43,7 +45,7 @@ const UserInfo = (props: UserInfoProps) => {
             <a
                 style={!isNullOrUndefined(props.title_size) ? { fontSize: props.title_size } : {}}
                 className="__user_info_login"
-                href={`/users/${props.login}`} target="_blank" rel="noopener noreferrer">
+                href={`/users/${props.login}`} rel="noopener noreferrer">
                 {props.login}
             </a>
             {

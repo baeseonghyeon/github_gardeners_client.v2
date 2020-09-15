@@ -24,8 +24,8 @@ const UserProjectDetail = (props: IUserProjectDetailProps) => {
     const dispatch = useDispatch();
     const { challenges_by_user } = useSelector((state: RootState) => state.challenge);
     const { user } = useSelector((state: RootState) => state.user);
-    const [ selectedChallenge, setSelectedChallenge] = useState<string>("");
-    const [ selectedChallengeState, setSelectedChallengeState] = useState(0);
+    const [selectedChallenge, setSelectedChallenge] = useState<string>("");
+    const [selectedChallengeState, setSelectedChallengeState] = useState(0);
 
     useEffect(() => {
         dispatch(getChallengesByUserThunk(props.login));
@@ -33,6 +33,23 @@ const UserProjectDetail = (props: IUserProjectDetailProps) => {
             dispatch(clearChallengesByUserThunk());
         }
     }, [user.loading]);
+
+    useEffect(() => {
+        if (challenges_by_user.data !== undefined && challenges_by_user.data !== null) {
+
+            if (challenges_by_user.data.data !== null && challenges_by_user.data.data.length > 0) {
+                const __firstChallenge = challenges_by_user.data.data[0];
+                setSelectedChallenge(__firstChallenge.id);
+                setSelectedChallengeState(Lib.Date.fromNow(__firstChallenge.start_dt, __firstChallenge.finish_dt))
+            }
+        }
+        return () => {
+            setSelectedChallenge('');
+            setSelectedChallengeState(0);
+        }
+    }, [
+        challenges_by_user.data
+    ]);
 
     return <div className="user-project-detail-container">
         <div className="user-project-detail-header">
@@ -106,7 +123,7 @@ const UserProjectDetail = (props: IUserProjectDetailProps) => {
                 && !isNullOrUndefined(challenges_by_user.data.data)
                 && challenges_by_user.data.data.length > 0 ?
                 selectedChallenge !== "" ?
-                        <UserProjectDetailItems
+                    <UserProjectDetailItems
                         className="user-project-detail-contents"
                         login={props.login}
                         challengeState={selectedChallengeState}
