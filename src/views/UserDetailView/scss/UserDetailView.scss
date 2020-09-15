@@ -78,6 +78,7 @@
                         .user-profile-avatar-img {
                             display: flex;
                             position: relative;
+                            border-radius: 50%;
                             @include pc-only {
                                 width: 100%;
                             }
