@@ -18,7 +18,6 @@ const MainViewHeader = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
     useEffect(() => {
         _dispatch(getActiveChallengesThunk());
-
     }, []);
 
     useEffect(() => {

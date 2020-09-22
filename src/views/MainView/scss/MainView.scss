@@ -29,6 +29,24 @@
             // height: max-content;
         }
 
+        &.loading {
+            justify-content: center;
+            align-items: center;
+            min-height: 80%;
+            .main-contents-indicator {
+                font-size: 5rem;
+            }
+        }
+
+        &.empty {
+            justify-content: center;
+            align-items: center;
+            min-height: 80%;
+            .main-contents-empty-text {
+                text-align: center;
+            }
+        }
+
         .main-content-item {
             display: flex;
             margin: 10px 15px;
@@ -36,6 +54,15 @@
             @include tab {
                 min-height: max-content;
             }
+
+            &.empty {
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                text-align: center;
+                height: 100%;
+            }
+
             .main-content-item-header {
                 .__text_header_container_title {
                     font-size: 1.2rem;
