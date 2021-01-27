@@ -3,7 +3,7 @@
 
 .users-activity-logs-wrapper {
     position: relative;
-    background-color: $colors-dark;
+    background-color: $colors-darker;
     padding-bottom: 30px;
     // height: 100%;
     @include pc-only {
@@ -126,28 +126,32 @@
                 }
             }
         }
-        .activity-commits{
-            margin-top: .3rem;
+        .activity-commits {
+            margin-top: 0.3rem;
             display: flex;
             flex-direction: column;
-            .activity-commit-item{
+            .activity-commit-item {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 flex-wrap: wrap;
-                a,p,svg{
-                    color:$colors-white;
-                    font-size: .8rem;
+                a,
+                p,
+                svg {
+                    color: $colors-white;
+                    font-size: 0.8rem;
                     font-weight: 300;
                     word-break: break-all;
                 }
-                svg{ color:$colors-yellow; }
-                .commit-message{
-                    margin-left: .2rem;
+                svg {
+                    color: $colors-yellow;
                 }
-                .commit-author{
-                    margin-left: .2rem;
-                    font-size: .7rem;
+                .commit-message {
+                    margin-left: 0.2rem;
+                }
+                .commit-author {
+                    margin-left: 0.2rem;
+                    font-size: 0.7rem;
                     color: $colors-text-sub;
                 }
             }
@@ -264,4 +268,3 @@
         }
     }
 }
-

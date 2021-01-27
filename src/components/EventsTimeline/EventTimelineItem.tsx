@@ -19,27 +19,27 @@ const EventsTimelineItem = (props: IEventsTimelineItemProps) => {
             <div className="activity-log-header">
                 <p className="message">
                     <b>
-                        <ExternalLink 
-                            className="repo-info-header-title" 
-                            to={ `https://github.com/${props.event.actor_login}` }
-                            text={ props.event.actor_login }
+                        <ExternalLink
+                            className="repo-info-header-title"
+                            to={`/users/${props.event.actor_login}`}
+                            text={props.event.actor_login}
                         />
-                    </b> 님이 
+                    </b> 님이
                     <b> {props.event.payload.size}</b>건의 커밋을 push 했습니다</p>
                 <p className="timestamp">{moment(props.event.created_at).fromNow()}</p>
             </div>
             <div className="activity-commits">
                 {
-                    props.event.payload.commits.map((commit, idx)=>{
-                        return <div className="activity-commit-item" key={ idx }>
-                            <GoGitCommit/>
-                            <ExternalLink text={commit.message} 
+                    props.event.payload.commits.map((commit, idx) => {
+                        return <div className="activity-commit-item" key={idx}>
+                            <GoGitCommit />
+                            <ExternalLink text={commit.message}
                                 to={
                                     `https://github.com/${props.event.repo.name}/commit/${commit.sha}`
                                 }
                                 className="commit-message"
                             />
-                            <p className="commit-author">{ commit.author.name }</p>
+                            <p className="commit-author">{commit.author.name}</p>
                         </div>
                     })
                 }
@@ -47,44 +47,44 @@ const EventsTimelineItem = (props: IEventsTimelineItemProps) => {
             <div className="activity-log-content">
                 {
                     !isNullOrUndefined(props.event.repo_detail) ?
-                    <>
+                        <>
+                            <div className="repo-info-header">
+                                <ExternalLink
+                                    className="repo-info-header-title"
+                                    to={`https://github.com/${props.event.repo_detail.name}`}
+                                    text={props.event.repo_detail.name}
+                                />
+                                <p className="repo-info-header-desc">
+                                    {props.event.repo_detail.description}
+                                </p>
+                            </div>
+                            <div className="languages-container">
+                                {
+                                    props.event.repo_detail.languages.map((lan, idx) => {
+                                        return <div key={idx} className="language-item" >
+                                            <span className="language-dot" style={Lib.Github.lanColor(lan.name)}></span>
+                                            <p className="language-name">{lan.name}</p>
+                                        </div>
+                                    })
+                                }
+                            </div>
+                            <div className="repo-additional-info">
+                                <div className="repo-additional-info-item">
+                                    <GoStar />
+                                    <p className="repo-additional-info-item-desc">{props.event.repo_detail.stargazers_count}</p>
+                                </div>
+
+                                <div className="repo-additional-info-item">
+                                    <GoRepoForked />
+                                    <p className="repo-additional-info-item-desc">{props.event.repo_detail.forks_count}</p>
+                                </div>
+
+                            </div>
+                        </> :
                         <div className="repo-info-header">
-                            <ExternalLink
-                                className="repo-info-header-title"
-                                to={ `https://github.com/${props.event.repo_detail.name}` }
-                                text={ props.event.repo_detail.name }
-                            />
-                            <p className="repo-info-header-desc">
-                                {props.event.repo_detail.description}
-                            </p>
+                            <p className="repo-info-header-title">{props.event.repo.name}</p>
+                            <p className="repo-info-header-desc">❗️삭제된 저장소 입니다</p>
                         </div>
-                        <div className="languages-container">
-                            {
-                                props.event.repo_detail.languages.map((lan, idx) => {
-                                    return <div key={idx} className="language-item" >
-                                        <span className="language-dot" style={Lib.Github.lanColor(lan.name)}></span>
-                                        <p className="language-name">{lan.name}</p>
-                                    </div>
-                                })
-                            }
-                        </div>
-                        <div className="repo-additional-info">
-                            <div className="repo-additional-info-item">
-                                <GoStar />
-                                <p className="repo-additional-info-item-desc">{props.event.repo_detail.stargazers_count}</p>
-                            </div>
-
-                            <div className="repo-additional-info-item">
-                                <GoRepoForked />
-                                <p className="repo-additional-info-item-desc">{props.event.repo_detail.forks_count}</p>
-                            </div>
-
-                        </div>
-                    </> : 
-                    <div className="repo-info-header">
-                        <p className="repo-info-header-title">{props.event.repo.name}</p>
-                        <p className="repo-info-header-desc">❗️삭제된 저장소 입니다</p>
-                    </div>
                 }
             </div>
         </div>

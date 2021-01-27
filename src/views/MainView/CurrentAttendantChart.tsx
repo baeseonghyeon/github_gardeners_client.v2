@@ -30,7 +30,7 @@ const CurrentAttendantChart = () => {
             max: 100,
             labels: {
                 ...HighChartTheme.Dark.yAxis.labels,
-                format: "{value:.1f} %",
+                format: "{value} %",
             },
         },
         xAxis: {
@@ -57,7 +57,7 @@ const CurrentAttendantChart = () => {
             for (const item of data.data) {
                 _series.push({
                     name: moment(item.date).format("MM/DD"),
-                    y: item.rate
+                    y: Number(item.rate.toFixed(2))
                 });
             }
 

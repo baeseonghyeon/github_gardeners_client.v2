@@ -1,72 +1,76 @@
-@import '../../scss/mixins';
-@import '../../scss/variables';
+@import "../../scss/mixins";
+@import "../../scss/variables";
 
-.users-view-container{
+.users-view-container {
     width: 100%;
-    .users-view-content{
+    .users-view-content {
         display: flex;
-        @include pc-only{
+        @include pc-only {
             height: 100%;
             position: relative;
             width: 100%;
             flex-direction: row;
         }
-        @include tab{
+        @include tab {
             flex-direction: column;
         }
-        
-        .users-list-container{
-            @include pc-only{
-                min-width:400px;
+
+        .users-list-container {
+            @include pc-only {
+                min-width: 400px;
                 max-width: 400px;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 position: relative;
             }
-            @include tab{
+            @include tab {
                 width: 100%;
             }
-            .users-list-header{
+            .users-list-header {
                 margin: 20px;
                 height: min-content;
-                .users-view-list-search-container{
+                .users-view-list-search-container {
                     display: flex;
                     flex-direction: row;
                     align-items: flex-end;
                     justify-content: flex-start;
                     position: relative;
-                    .btn{
+                    .btn {
                         cursor: pointer;
                         margin-left: 20px;
                         min-width: 70px;
                         height: 35px;
                         color: $colors-white;
                         font-size: 1rem;
-                        padding: .3rem;
+                        padding: 0.3rem;
                         border-radius: 5px;
                         @include common-box-shadow;
-                        &.search{ background-color: $colors-green; }
-                        &.cancel{ background-color: $colors-red; }
+                        &.search {
+                            background-color: $colors-green;
+                        }
+                        &.cancel {
+                            background-color: $colors-red;
+                        }
                     }
                 }
             }
-            .users-list-wrapper{
+            .users-list-wrapper {
                 display: flex;
-                
-                @include pc-only{
+
+                @include pc-only {
                     flex-direction: column;
                     height: 100%;
                     overflow-y: auto;
                     margin: 20px;
                 }
-                @include tab{
+                @include tab {
                     flex-direction: row;
                     // width: 100%;
-                    overflow-x:auto;
+                    overflow-x: auto;
                     margin: 20px 0;
                 }
-                .not-searched-wrapper{
+                .not-searched-wrapper {
                     margin: auto;
                     display: flex;
                     width: max-content;
@@ -75,45 +79,45 @@
                     align-items: center;
                     text-align: center;
                 }
-                .users-list-item{
+                .users-list-item {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
                     align-items: center;
                     position: relative;
-                    @include pc-only{
+                    @include pc-only {
                         border-bottom: 1px solid $colors-light-dark;
                     }
-                    @include tab{
+                    @include tab {
                         border-bottom: none;
-                        img{
+                        img {
                             width: 60px;
                             height: 60px;
                         }
-                        a{
+                        a {
                             width: max-content;
                             font-size: 1rem;
                             line-height: 1rem;
                         }
-                        p{
+                        p {
                             width: max-content;
-                            font-size: .8rem;
+                            font-size: 0.8rem;
                             width: max-content;
                         }
                     }
-                    
-                    .btn{
+
+                    .btn {
                         cursor: pointer;
                         margin-left: 20px;
                         min-width: 70px;
                         height: 35px;
                         color: $colors-white;
                         font-size: 1rem;
-                        padding: .3rem;
+                        padding: 0.3rem;
                         border-radius: 5px;
                         background-color: $colors-material-blue;
                         @include common-box-shadow;
-                        @include tab{
+                        @include tab {
                             opacity: 0;
                             margin: 0;
                             position: absolute;
@@ -126,27 +130,28 @@
             }
         }
 
-        .users-activity-logs-container{
+        .users-activity-logs-container {
             position: relative;
             display: flex;
             flex-direction: column;
             width: 100%;
             height: 100%;
-            .users-activity-logs-header{
+            background-color: $colors-darker;
+            .users-activity-logs-header {
                 margin: 20px;
                 height: max-content;
             }
-            .users-activity-logs-content{
+            .users-activity-logs-content {
                 width: 100%;
                 height: 100%;
-                @include pc-only{
+                background-color: $colors-darker;
+                @include pc-only {
                     overflow-y: auto;
                 }
-                @include tab{
+                @include tab {
                     height: max-content;
                 }
             }
         }
     }
-    
 }

@@ -1,48 +1,71 @@
-@import '../../../scss/mixins';
-@import '../../../scss/variables';
+@import "../../../scss/mixins";
+@import "../../../scss/variables";
 
-.user-rank-list-container{
+.user-rank-list-container {
     flex-basis: 100% !important;
-    .user-rank-list-wrapper{
+    .user-rank-list-wrapper {
         display: flex;
         flex-direction: column;
         overflow-y: auto;
         max-height: 400px;
-        .user-rank-item{
-            display:flex;
+        .user-rank-item {
+            display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
+            min-height: 80px;
             border-bottom: 1px dotted $colors-white;
-            .user-rank-text{
+            .user-rank-text {
                 font-size: 1rem;
                 color: $colors-white;
                 padding-left: 5px;
                 padding-right: 5px;
-                b{
-                    font-size: 3rem;
+                b {
+                    font-size: 2rem;
                     line-height: 3rem;
                 }
-                &.rank-1{ b{ color: $colors-yellow; }}
-                &.rank-2{ b{ color:$colors-light-gray; } }
-                &.rank-3{ b{ color:$colors-orange; } }                
-                
-
+                &.rank-1 {
+                    b {
+                        color: $colors-yellow;
+                    }
+                }
+                &.rank-2 {
+                    b {
+                        color: $colors-light-gray;
+                    }
+                }
+                &.rank-3 {
+                    b {
+                        color: $colors-orange;
+                    }
+                }
             }
-            .user-rank-item-info{
+            .user-rank-item-info {
                 img {
                     width: 60px;
                     height: 60px;
                 }
-                a{
+                a {
                     font-size: 1rem;
                 }
-                p{
-                    font-size: .8rem;
+                p {
+                    font-size: 0.8rem;
                 }
-                &.rank-1{ svg{ color: $colors-yellow; }}
-                &.rank-2{ svg{ color:$colors-light-gray; } }
-                &.rank-3{ svg{ color:$colors-orange; } }
+                &.rank-1 {
+                    svg {
+                        color: $colors-yellow;
+                    }
+                }
+                &.rank-2 {
+                    svg {
+                        color: $colors-light-gray;
+                    }
+                }
+                &.rank-3 {
+                    svg {
+                        color: $colors-orange;
+                    }
+                }
             }
         }
     }

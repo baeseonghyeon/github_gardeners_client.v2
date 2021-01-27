@@ -129,23 +129,29 @@ export function clearUserAuthThunk(): ThunkAction<
     };
 }
 
-export function getUsersInProjectThunk(challenge_id : string) : ThunkAction<void, RootState, null, UserAction>{
-    return async dispatch => {
+export function getUsersInProjectThunk(
+    challenge_id: string
+): ThunkAction<void, RootState, null, UserAction> {
+    return async (dispatch) => {
         const { request, success, failure } = getUsersInProjectAsync;
         dispatch(request());
-        try{
+        try {
             const response = await getUsersInProject(challenge_id);
             dispatch(success(response));
-        }
-        catch(e){
+        } catch (e) {
             dispatch(failure(e));
         }
-    }
+    };
 }
 
-export function clearUsersInProjectThunk() : ThunkAction<void, RootState, null, UserAction>{
-    return dispatch => {
+export function clearUsersInProjectThunk(): ThunkAction<
+    void,
+    RootState,
+    null,
+    UserAction
+> {
+    return (dispatch) => {
         const { cancel } = getUsersInProjectAsync;
         dispatch(cancel());
-    }
+    };
 }

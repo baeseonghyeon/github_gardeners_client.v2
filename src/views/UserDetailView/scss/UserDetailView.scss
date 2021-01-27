@@ -23,7 +23,7 @@
                 flex: 3;
                 min-width: $user-profile-container-width;
                 max-width: $user-profile-container-width;
-                
+
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -49,6 +49,9 @@
                 @include pc-only {
                     min-height: 100%;
                     max-height: 100%;
+                }
+                @include tab {
+                    margin-bottom: 20px;
                 }
                 .user-profile-header {
                     position: relative;
@@ -78,6 +81,7 @@
                         .user-profile-avatar-img {
                             display: flex;
                             position: relative;
+                            border-radius: 50%;
                             @include pc-only {
                                 width: 100%;
                             }
@@ -164,14 +168,14 @@
                     flex-direction: row;
                     align-self: flex-end;
                     @include pc-only {
-                        margin: 30px;
+                        margin: 30px 10px;
                         position: absolute;
                         bottom: 0;
-                        right: 20px;
+                        left: 15px;
                     }
                     @include tab {
-                        margin: 0 20px;
-                        align-self: flex-end;
+                        margin: 0 15px;
+                        align-self: flex-start;
                     }
                     .profile-btn {
                         height: 2rem;
@@ -201,22 +205,32 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            @include pc-only{
+            background-color: $colors-darker;
+            @include pc-only {
                 flex: 9;
             }
-            .user-activity-header{
+            .user-activity-header {
                 margin: 20px;
                 display: flex;
                 flex-direction: column;
-                height: max-content;
+                min-height: 150px;
+
+                @include pc-only {
+                    min-height: 118px;
+                    margin: 20px 20px 0 20px;
+                }
             }
-            .user-activity-content{
+            .user-activity-content {
+                background-color: $colors-darker;
                 width: 100%;
                 height: 100%;
                 overflow-y: auto;
                 position: relative;
-                display:flex;
+                display: flex;
                 flex-direction: column;
+                @include pc-only {
+                    padding-top: 15px;
+                }
             }
         }
     }
@@ -228,14 +242,14 @@
     height: max-content;
     position: relative;
     display: flex;
-    
+
     .__custom_nav_wrapper__ {
         display: flex;
         width: 100%;
         position: relative;
         display: flex;
         flex-direction: row;
-        
+
         &::after {
             content: "";
             position: absolute;
@@ -244,7 +258,7 @@
             width: 100%;
             height: 2px;
             background-color: $colors-white;
-        }    
+        }
         .__customer_nav_item__ {
             position: relative;
             max-width: max-content;
@@ -252,7 +266,7 @@
                 background-color: rgba(0, 0, 0, 0);
                 box-shadow: none;
                 border-radius: 0;
-                @include tab{
+                @include tab {
                     max-width: 105px;
                     min-width: 90px;
                 }
